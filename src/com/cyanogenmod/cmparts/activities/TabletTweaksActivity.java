@@ -383,7 +383,7 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
                 Window window = getWindow();
                 window.getDecorView().getWindowVisibleDisplayFrame(rect);
                 int naviBarHeight = Settings.System.getInt(getContentResolver(),
-                      Settings.System.STATUSBAR_NAVI_SIZE, 25);
+                      Settings.System.STATUSBAR_NAVI_SIZE, 35);
                 boolean isPortrait = getResources().getConfiguration().orientation ==
                     Configuration.ORIENTATION_PORTRAIT;
                 intent.putExtra("aspectX", isPortrait ? (width + naviBarHeight + naviBarHeight) : naviBarHeight);
