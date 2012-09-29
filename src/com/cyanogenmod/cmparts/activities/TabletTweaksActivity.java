@@ -138,7 +138,7 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
         mNavisize = (ListPreference) prefSet.findPreference(PREF_NAVISIZE);
         mNavisize.setOnPreferenceChangeListener(this);
         mNavisize.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_NAVI_SIZE, 25)));
+                Settings.System.STATUSBAR_NAVI_SIZE, 35)));
 
         int transparentNaviBarPref = Settings.System.getInt(getContentResolver(),
                 Settings.System.TRANSPARENT_NAVI_BAR, 0);
