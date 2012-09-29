@@ -91,8 +91,6 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
 
     private static final String ELECTRON_BEAM_ANIMATION_OFF = "electron_beam_animation_off";
 
-    private static final String ELECTRON_BEAM_ANIMATION_ON_DELAY = "electron_beam_animation_on_delay";
-
     private static final String ROTATION_ANIMATION_PREF = "pref_rotation_animation";
 
     private static final String LCD_DENSITY_PREF = "lcd_density";
@@ -138,8 +136,9 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
     private static final int MSG_DATA_CLEARED = 500;
 
     private CheckBoxPreference mElectronBeamAnimationOn;
+
     private CheckBoxPreference mElectronBeamAnimationOff;
-    private ListPreference mElectronBeamAnimationOnPref;
+
     private CheckBoxPreference mRotationAnimationPref;
 
     private CheckBoxPreference mUseBraviaPref;
@@ -212,9 +211,6 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
         /* Electron Beam control */
         mElectronBeamAnimationOn = (CheckBoxPreference)prefSet.findPreference(ELECTRON_BEAM_ANIMATION_ON);
         mElectronBeamAnimationOff = (CheckBoxPreference)prefSet.findPreference(ELECTRON_BEAM_ANIMATION_OFF);
-        int electronBeamAnimationOnPref = Settings.System.getInt(getContentResolver(),
-                Settings.System.ELECTRON_BEAM_ANIMATION_ON_DELAY, 100);
-        mElectronBeamAnimationOnPref = (ListPreference) prefSet.findPreference(ELECTRON_BEAM_ANIMATION_ON_DELAY);
         if (getResources().getBoolean(com.android.internal.R.bool.config_enableScreenAnimation)) {
             mElectronBeamAnimationOn.setChecked(Settings.System.getInt(getContentResolver(),
                     Settings.System.ELECTRON_BEAM_ANIMATION_ON,
@@ -222,14 +218,10 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
             mElectronBeamAnimationOff.setChecked(Settings.System.getInt(getContentResolver(),
                     Settings.System.ELECTRON_BEAM_ANIMATION_OFF,
                     getResources().getBoolean(com.android.internal.R.bool.config_enableScreenOffAnimation) ? 1 : 0) == 1);
-            mElectronBeamAnimationOnPref.setValue(String.valueOf(electronBeamAnimationOnPref));
-            mElectronBeamAnimationOnPref.setOnPreferenceChangeListener(this);
         } else {
             /* Hide Electron Beam controls if disabled */
             ((PreferenceCategory) prefSet.findPreference(GENERAL_CATEGORY))
                 .removePreference(mElectronBeamAnimationOn);
-            ((PreferenceCategory) prefSet.findPreference(GENERAL_CATEGORY))
-                .removePreference(mElectronBeamAnimationOnPref);
             ((PreferenceCategory) prefSet.findPreference(GENERAL_CATEGORY))
                 .removePreference(mElectronBeamAnimationOff);
         }
@@ -495,11 +487,6 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
         } else if (preference == mDisText) {
             displaySizeCustom = String.valueOf(newValue);
             showDialog(DIALOG_WARN_DISPLAY_SIZE);
-            return true;
-        } else if (preference == mElectronBeamAnimationOnPref) {
-            int electronBeamAnimation = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getContentResolver(), Settings.System.ELECTRON_BEAM_ANIMATION_ON_DELAY,
-                    electronBeamAnimation);
             return true;
         }
         return false;
