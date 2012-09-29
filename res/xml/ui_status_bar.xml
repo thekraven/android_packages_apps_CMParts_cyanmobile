@@ -205,7 +205,7 @@
 		<CheckBoxPreference android:key="pref_status_bar_tiny_expanded"
 			android:title="@string/ui_status_bar_tiny_expanded_title"
 			android:summary="@string/ui_status_bar_tiny_expanded_summary"
-			android:defaultValue="true" />
+			android:defaultValue="false" />
 		<ListPreference android:key="pref_status_bar_expanded"
                         android:dependency="pref_status_bar_tiny_expanded"
 			android:title="@string/ui_status_bar_expanded_title"

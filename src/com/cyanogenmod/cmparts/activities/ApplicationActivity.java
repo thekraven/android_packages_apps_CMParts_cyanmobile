@@ -98,7 +98,7 @@ public class ApplicationActivity extends PreferenceActivity implements OnPrefere
 
         if (SystemProperties.get("ro.vold.switchablepair","").equals("")) {
             mSwitchStoragePref.setSummaryOff(R.string.pref_storage_switch_unavailable);
-            mSwitchStoragePref.setEnabled(true);
+            mSwitchStoragePref.setEnabled(false);
         }
 
         mMoveAllAppsPref = (CheckBoxPreference) prefSet.findPreference(MOVE_ALL_APPS_PREF);
