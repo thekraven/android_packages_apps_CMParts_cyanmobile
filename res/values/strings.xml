@@ -219,6 +219,8 @@
     <string name="statusbar_statsize_summary">Change the size of Height statusbar</string>
     <string name="statusbar_navisize">Navigation Size</string>
     <string name="statusbar_navisize_summary">Change the size of Navigation buttons</string>
+    <string name="pref_navi_bar_ani_title">Navigation buttons animate</string>
+    <string name="pref_navi_bar_ani_summary">Change time for animate</string>
     <string name="statusbar_carrierfontsize">Carrier Font Size</string>
     <string name="statusbar_carrierfontsize_summary">Change the size of text elements on carrier</string>
     <string name="ui_status_bar_statusbar_carrier_title">Carrier label menu</string>
@@ -302,6 +304,8 @@
     <string name="ui_status_bar_expanded_summary">Change tiny size</string>
     <string name="ui_status_bar_settingscolor_title">Closedrag Glow color</string>
     <string name="ui_status_bar_settingscolor_summary">Change the closedrag glow color</string>
+    <string name="ui_status_bar_showram_title">Ram Expanded bar</string>
+    <string name="ui_status_bar_showram_summary">Enable/disable ram expanded statusbar</string>
 
     <!-- User interface: Text color tweaks -->
     <string name="ui_status__date_color_title">Date color</string>
@@ -535,6 +539,7 @@
     <string name="pref_lockscreen_quick_unlock_control_title">Quick Unlock</string>
     <string name="pref_lockscreen_quick_unlock_control_summary">Unlock automatically when the correct PIN/password is entered</string>
     <string name="lockscreen_style_options_title">Style-specific Options</string>
+    <string name="incall_style_options_title">Incall Style-specific Options</string>
     <string name="pref_lockscreen_custom_app_toggle_title">Custom app starter</string>
     <string name="pref_lockscreen_custom_app_toggle_tab_summary">Shows a second set of sliders to launch a custom app</string>
     <string name="pref_lockscreen_custom_app_toggle_rotary_summary">Shows a custom app dimple to launch a custom app</string>
@@ -573,6 +578,10 @@
     <string name="lockscreen_style_entry_honeycomb">Honeycomb (Beta)</string>
     <string name="lockscreen_style_entry_circular">Circular (Alpha)</string>
     <string name="lockscreen_style_entry_sense">Sense (Beta)</string>
+    <string name="lockscreen_style_entry_icsring">Ics Ring (Alpha)</string>
+    <string name="lockscreen_style_entry_jbring">Jb Ring (Alpha)</string>
+    <string name="lockscreen_style_entry_jbglowring">Jb GlowPad (Alpha)</string>
+    <string name="lockscreen_style_entry_bebering">Bebek Ring (Alpha)</string>
     <string name="pref_rotary_style_title">Rotary style</string>
     <string name="pref_rotary_style_summary">Choose the style of the rotary wheel</string>
     <string name="rotary_style_entry_normal">Normal style</string>
@@ -923,6 +932,8 @@
     <string name="title_expanded_widget_bgr">Background power widget</string>
     <string name="summary_expanded_widget">choose style expanded views power widget</string>
     <string name="summary_expanded_widget_bgr">choose background expanded views power widget</string>
+    <string name="title_pref_tracker">Tracker image</string>
+    <string name="summary_pref_tracker">choose image tracker views</string>
     <string name="title_bottom_expanded_widget">Move to bottom</string>
     <string name="bottom_expanded_widget_summaryOn">Showing power widget on bottom</string>
     <string name="bottom_expanded_widget_summaryOff">Showing power widget on top</string>
@@ -955,6 +966,8 @@
     <string name="summary_expanded_hide_scrollbar">Hide scrollbar when more than the maximum number of widget buttons are present.</string>
     <string name="expanded_color_mask">Indicator color</string>
     <string name="expanded_bgr_color_mask">Background power widget color</string>
+    <string name="title_pref_tracker_color">Choose color</string>
+    <string name="pref_tracker_color_summary">Image Tracker color</string>
     <string name="title_widget_picker">Widget buttons</string>
     <string name="summary_widget_picker">Pick your widget buttons</string>
     <string name="title_widget_order">Widget button order</string>
@@ -1364,4 +1377,15 @@
     <string name="compatibility_mode_summary_on">Run older apps in Compatibility mode. (requires reboot)</string>
     <!-- Sound & display settings screen, compatibility mode option summary text when check box is clear -->
     <string name="compatibility_mode_summary_off">Don\'t run older apps in Compatibility mode. (requires reboot)</string>
+
+    <string name="pref_render_colors_title">Color calibration</string>
+    <string name="pref_render_colors_summary">Fine-tune the calibration colors</string>
+    <string name="render_colors_reset">Reset</string>
+    <string name="render_color_red_title">Red</string>
+    <string name="render_color_green_title">Green</string>
+    <string name="render_color_blue_title">Blue</string>
+
+    <!-- Lock screen see through -->
+    <string name="lockscreen_see_through_title">See through</string>
+    <string name="lockscreen_see_through_summary">Allows to see the activity behind the lock screen.\n Custom image will disable this preference.</string>
 </resources>

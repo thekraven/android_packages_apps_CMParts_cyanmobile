@@ -101,7 +101,6 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
 
         mSquadzone = (Preference) prefSet.findPreference(PREF_SQUADZONE);
         mSquadzone.setSummary("CyanMobile");
-        int defValuesColor = getResources().getInteger(com.android.internal.R.color.color_default_cyanmobile);
 
         mAppBackgroundColor = (Preference) prefSet.findPreference(PREF_APP_BACKGROUND_COLOR);
         mAppBackgroundColor.setOnPreferenceChangeListener(this);
@@ -115,7 +114,7 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
         mBackgroundAppImageTmp = new File(getApplicationContext().getFilesDir()+"/aps_background.tmp");
 
         int appBackgroundColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.BACKGROUND_APP_COLOR, defValuesColor);
+                Settings.System.BACKGROUND_APP_COLOR, defValuesColor());
         mAppBackgroundColor.setSummary(Integer.toHexString(appBackgroundColor));
         mAppBackgroundColor.setEnabled(transparentAppBackgroundPref == 1);
 
@@ -282,7 +281,7 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
             return Settings.System.getInt(getContentResolver(), Settings.System.TEXT_FULLOFCOLOR);
         }
         catch (SettingNotFoundException e) {
-            return -1;
+            return defValuesColor();
         }
     }
 
@@ -310,7 +309,7 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.OVERSCROLL_COLOR);
         } catch (SettingNotFoundException e) {
-            return -16777216;
+            return defValuesColor();
         }
     }
 
@@ -319,8 +318,12 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.BACKGROUND_APP_COLOR);
         } catch (SettingNotFoundException e) {
-            return -16777216;
+            return defValuesColor();
         }
+    }
+
+    private int defValuesColor() {
+        return getResources().getInteger(com.android.internal.R.color.color_default_cyanmobile);
     }
 
     ColorPickerDialog.OnColorChangedListener mBgAppColorListener =

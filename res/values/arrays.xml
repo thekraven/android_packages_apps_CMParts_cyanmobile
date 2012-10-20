@@ -168,6 +168,8 @@
 	<item>Behind Status Bar</item>
 	<item>Navi Bar Top</item>
 	<item>Navi Bar Outside</item>
+	<item>Circle</item>
+	<item>Circle Percentage</item>
         <item>Hidden</item>
     </string-array>
 
@@ -179,6 +181,8 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
+        <item>8</item>
+        <item>9</item>
         <item>2</item>
     </string-array>
 
@@ -1052,6 +1056,10 @@
         <item>@string/lockscreen_style_entry_honeycomb</item>
         <item>@string/lockscreen_style_entry_circular</item>
         <item>@string/lockscreen_style_entry_sense</item>
+        <item>@string/lockscreen_style_entry_icsring</item>
+        <item>@string/lockscreen_style_entry_jbring</item>
+        <item>@string/lockscreen_style_entry_jbglowring</item>
+        <item>@string/lockscreen_style_entry_bebering</item>
     </string-array>
 
     <string-array name="pref_lockscreen_style_values" translatable="false">
@@ -1062,6 +1070,10 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
     </string-array>
 
     <string-array name="pref_rotary_style_entries" translatable="false">
@@ -1092,12 +1104,16 @@
         <item>@string/lockscreen_style_entry_tabs</item>
         <item>@string/lockscreen_style_entry_rotary</item>
         <item>@string/lockscreen_style_entry_ring</item>
+        <item>@string/lockscreen_style_entry_jbring</item>
+        <item>@string/lockscreen_style_entry_jbglowring</item>
     </string-array>
 
     <string-array name="pref_in_call_style_values" translatable="false">
         <item>1</item>
         <item>2</item>
         <item>4</item>
+        <item>5</item>
+        <item>6</item>
     </string-array>
 
     <string-array name="pref_lockscreen_background_entries">
@@ -1358,6 +1374,7 @@
     
     <string-array name="entries_tablet_navi_buttons">
         <item>Hide</item>
+        <item>Invisible</item>
         <item>Home</item>
         <item>Back</item>
         <item>Search</item>
@@ -1369,6 +1386,7 @@
 
     <string-array name="values_tablet_navi_buttons">
         <item>0</item>
+        <item>8</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -1605,6 +1623,34 @@
         <item>600</item>
         <item>900</item>
         <item>1800</item>
+    </string-array>
+
+    <string-array
+        name="pref_navi_bar_ani_entries">
+        <item>Disabled</item>
+        <item>Rotate if screen rotate</item>
+        <item>faster</item>
+        <item>5 seconds</item>
+        <item>10 seconds</item>
+        <item>20 seconds (Default)</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minute</item>
+        <item>5 minute</item>
+    </string-array>
+
+    <string-array
+        name="pref_navi_bar_ani_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>20000</item>
+        <item>30000</item>
+        <item>60000</item>
+        <item>120000</item>
+        <item>300000</item>
     </string-array>
 
     <string-array
