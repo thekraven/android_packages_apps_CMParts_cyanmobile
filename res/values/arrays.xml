@@ -357,7 +357,7 @@
         <item>22dp</item>
         <item>23dp</item>
         <item>24dp</item>
-        <item>25dp (Default)</item>
+        <item>25dp</item>
         <item>26dp</item>
         <item>27dp</item>
         <item>28dp</item>
@@ -367,7 +367,7 @@
         <item>32dp</item>
         <item>33dp</item>
         <item>34dp</item>
-        <item>35dp</item>
+        <item>35dp (Default)</item>
         <item>36dp</item>
         <item>37dp</item>
         <item>38dp</item>
@@ -732,24 +732,6 @@
         <item>2000</item>
         <item>5000</item>
         <item>10000</item>
-    </string-array>
-
-    <string-array name="entries_pref_electron_beam_animation_on_delay">
-        <item>None</item>
-        <item>0.1 s (Default)</item>
-        <item>0.5 s</item>
-        <item>1 s</item>
-        <item>2 s</item>
-        <item>3 s</item>
-    </string-array>
-
-    <string-array name="entryvalues_pref_electron_beam_animation_on_delay" translatable="false">
-        <item>0</item>
-        <item>100</item>
-        <item>500</item>
-        <item>1000</item>
-        <item>2000</item>
-        <item>3000</item>
     </string-array>
 
     <string-array name="entries_light_levels_dim">

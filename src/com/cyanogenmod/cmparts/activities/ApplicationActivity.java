@@ -94,11 +94,11 @@ public class ApplicationActivity extends PreferenceActivity implements OnPrefere
         mInstallLocationPref.setOnPreferenceChangeListener(this);
 
         mSwitchStoragePref = (CheckBoxPreference) prefSet.findPreference(SWITCH_STORAGE_PREF);
-        mSwitchStoragePref.setChecked((SystemProperties.getInt("persist.sys.vold.switchexternal", 0) == 1));
+        mSwitchStoragePref.setChecked((SystemProperties.getInt("persist.sys.vold.switchexternal", 1) == 1));
 
         if (SystemProperties.get("ro.vold.switchablepair","").equals("")) {
             mSwitchStoragePref.setSummaryOff(R.string.pref_storage_switch_unavailable);
-            mSwitchStoragePref.setEnabled(false);
+            mSwitchStoragePref.setEnabled(true);
         }
 
         mMoveAllAppsPref = (CheckBoxPreference) prefSet.findPreference(MOVE_ALL_APPS_PREF);
