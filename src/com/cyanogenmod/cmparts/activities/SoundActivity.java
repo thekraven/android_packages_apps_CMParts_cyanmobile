@@ -215,7 +215,7 @@ public class SoundActivity extends PreferenceActivity implements OnPreferenceCha
             p.setChecked(SystemProperties.getBoolean(getKey(CAMERA_SHUTTER_MUTE), false));
             p.setOnPreferenceChangeListener(this);
         }
-	p = (CheckBoxPreference) prefSet.findPreference(CAMERA_FOCUS_MUTE);
+	    p = (CheckBoxPreference) prefSet.findPreference(CAMERA_FOCUS_MUTE);
         p.setChecked(Settings.System.getInt(getContentResolver(),
                 CAMERA_FOCUS_MUTE, 0) == 1);
         p.setOnPreferenceChangeListener(this);
@@ -238,7 +238,7 @@ public class SoundActivity extends PreferenceActivity implements OnPreferenceCha
                     getInt(newValue));
             ((AudioManager)getSystemService(AUDIO_SERVICE)).reloadAudioSettings();
             mHandler.sendMessage(mHandler.obtainMessage(0, key));
-	} else if (key.equals(LOCK_VOLUME_KEYS)) {
+	    } else if (key.equals(LOCK_VOLUME_KEYS)) {
             if (getBoolean(newValue)) {
                 Settings.System.putInt(getContentResolver(), Settings.System.LOCK_VOLUME_KEYS, 1);
                 Settings.System.putInt(getContentResolver(), Settings.System.DEFAULT_VOLUME_CONTROL_MEDIA, 0);
@@ -254,13 +254,13 @@ public class SoundActivity extends PreferenceActivity implements OnPreferenceCha
                 Settings.System.putInt(getContentResolver(), Settings.System.DEFAULT_VOLUME_CONTROL_MEDIA, 0);
             }
             mLockVolumeKeys.setEnabled(!getBoolean(newValue));
-	} else if (key.equals(VOLUME_KEY_BEEPS)) {
+	    } else if (key.equals(VOLUME_KEY_BEEPS)) {
             Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_KEY_BEEPS,
                     getBoolean(newValue) ? 1 : 0);
         } else if (key.equals(NOTIFICATIONS_SPEAKER) || key.equals(RINGS_SPEAKER)
                 || key.equals(ALARMS_SPEAKER)) {
             SystemProperties.set(getKey(key), getBoolean(newValue) ? "1" : "0");
-	} else if (key.equals(CAMERA_FOCUS_MUTE)) {
+	    } else if (key.equals(CAMERA_FOCUS_MUTE)) {
             Settings.System.putInt(getContentResolver(), Settings.System.CAMERA_FOCUS_MUTE,
                     getBoolean(newValue) ? 1 : 0);
         } else if (key.equals(SCREENSHOT_MUTE)) {
