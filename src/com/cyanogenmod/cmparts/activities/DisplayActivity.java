@@ -207,7 +207,7 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
         mTransitionAnimationsPref.setOnPreferenceChangeListener(this);
 
         /* Electron Beam control */
-        //mElectronBeamAnimationOn = (CheckBoxPreference)prefSet.findPreference(ELECTRON_BEAM_ANIMATION_ON);
+       // mElectronBeamAnimationOn = (CheckBoxPreference)prefSet.findPreference(ELECTRON_BEAM_ANIMATION_ON);
         mElectronBeamAnimationOff = (CheckBoxPreference)prefSet.findPreference(ELECTRON_BEAM_ANIMATION_OFF);
         if (getResources().getBoolean(com.android.internal.R.bool.config_enableScreenAnimation)) {
             //mElectronBeamAnimationOn.setChecked(Settings.System.getInt(getContentResolver(),
@@ -256,9 +256,9 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
         } catch (IllegalArgumentException iae) {
         }
         if ((displaySizeCustom == null) || TextUtils.equals(displaySizeCustom, "0")) {
-            String displaySizeCus = ("Display size is :\n"+m.heightPixels+"x"+m.widthPixels+"\nIf you want change this, must type sizeHeight x sizeWidth \nwithout space,example 800x480");
-            displaySizeCustom = (m.heightPixels+"x"+m.widthPixels);
-            mDisText.setSummary(displaySizeCus);
+            displaySizeCustom = ("Display size is :\n"+m.heightPixels+"x"+m.widthPixels+"\nIf you want change this, must type sizeHeight x sizeWidth \nwithout space,example 800x480");
+
+            mDisText.setSummary(displaySizeCustom);
 	} else {
             mDisText.setSummary(("Display size is :\n"+displaySizeCustom+"\nIf you want change this, must type sizeHeight x sizeWidth \nwithout space,example 800x480"));
         }
