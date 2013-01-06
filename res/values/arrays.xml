@@ -656,6 +656,24 @@
         <item>1800000</item>
     </string-array>
 
+    <string-array name="pref_intruder_delay_entries">
+        <item>Immediately</item>
+        <item>1s</item>
+        <item>2s</item>
+        <item>3s (Default)</item>
+        <item>4s</item>  
+        <item>5s</item>
+    </string-array>
+
+    <string-array name="pref_intruder_delay_values" translatable="false">
+        <item>500</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>5000</item>
+    </string-array>
+
     <string-array name="pref_compcache_size_entries">
         <item>Disabled</item>
         <item>10%</item>
@@ -836,6 +854,18 @@
         <item>Hide</item>
     </string-array>
 
+    <string-array name="entries_status_bar_weekday">
+        <item>Normal</item>
+        <item>Small</item>
+        <item>None (default)</item>
+    </string-array>
+
+    <string-array name="values_status_bar_weekday" translatable="false">	
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>	
+    </string-array>
+
     <string-array name="values_status_bar_statusbar_carrier" translatable="false">
         <item>1</item>
         <item>2</item>
@@ -861,6 +891,7 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
         <item>0</item>
     </string-array>
 
@@ -869,6 +900,7 @@
         <item>Bottom</item>
         <item>Grid</item>
         <item>Tab</item>
+        <item>TileView</item>
         <item>Disabled</item>
     </string-array>
 
@@ -917,6 +949,7 @@
     </string-array>
 
    <string-array name="entries_brightness_widget" formatted="false" translatable="false">
+        <item>@string/cm_brightness_mode_auto</item>
         <item>@string/cm_brightness_mode_dim</item>
         <item>25%</item>
         <item>40%</item>
@@ -932,6 +965,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
     </string-array>
 
     <string-array name="entries_network_widget">
@@ -1041,7 +1075,6 @@
         <item>@string/lockscreen_style_entry_icsring</item>
         <item>@string/lockscreen_style_entry_jbring</item>
         <item>@string/lockscreen_style_entry_jbglowring</item>
-        <item>@string/lockscreen_style_entry_bebering</item>
     </string-array>
 
     <string-array name="pref_lockscreen_style_values" translatable="false">
@@ -1055,7 +1088,6 @@
         <item>9</item>
         <item>10</item>
         <item>11</item>
-        <item>12</item>
     </string-array>
 
     <string-array name="pref_rotary_style_entries" translatable="false">
@@ -1364,11 +1396,12 @@
         <item>Quick</item>
         <item>Custom app</item>
         <item>Power</item>
+        <item>Recent</item>
     </string-array>
 
     <string-array name="values_tablet_navi_buttons">
         <item>0</item>
-        <item>8</item>
+        <item>9</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -1376,6 +1409,7 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
+        <item>8</item>
     </string-array>
     
     <string-array name="entries_tablet_soft_buttons">
@@ -1402,6 +1436,7 @@
         <item>Quick</item>
         <item>Custom app</item>
         <item>Power</item>
+        <item>Recent</item>
     </string-array>
 
     <string-array name="values_tablet_navi_buttons_quicker">
@@ -1412,6 +1447,7 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+        <item>7</item>
     </string-array>
 
     <string-array name="values_transparent_notification_background">
@@ -1478,20 +1514,30 @@
 
     <string-array name="entries_lowmemkill">
         <item>Default</item>
+        <item>Minimum</item>
+        <item>Maximum</item>
         <item>Every day use</item>
+        <item>System</item>
         <item>Multitasking</item>
-        <item>Hard multitasking</item>
         <item>Soft multitasking</item>
+        <item>Hard multitasking</item>
+        <item>Gaming</item>
+        <item>Soft gaming</item>
         <item>Hard gaming</item>
     </string-array>
 
     <string-array name="values_lowmemkill">
         <item>2560,4096,6144,10240,11264,12288</item>
+        <item>1536,2048,4096,5120,5632,6144</item>
+        <item>2048,3072,6144,15360,17920,20480</item>
+        <item>2560,4096,6144,7680,8704,10240</item>
+        <item>2560,3840,6400,7680,10240,12800</item>
         <item>2560,4096,6144,11264,11776,14336</item>
         <item>2560,4096,6144,11776,12288,16384</item>
         <item>2560,4096,6144,10752,11264,13312</item>
-        <item>2560,4096,6144,7680,8704,10240</item>
+        <item>2560,3840,6400,10240,12800,19200</item>
         <item>2560,4096,6144,18944,22016,23552</item>
+        <item>2560,3840,6400,12800,12800,25600</item>
     </string-array>
 
     <string-array name="entries_iosched">
@@ -1799,5 +1845,25 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+    </string-array>
+
+    <string-array name="weather_interval_entries">	
+        <item>@string/weather_refresh_manual</item>
+        <item>@string/weather_refresh_30min</item>
+        <item>@string/weather_refresh_60min</item>
+        <item>@string/weather_refresh_2hrs</item>
+        <item>@string/weather_refresh_4hrs</item>
+        <item>@string/weather_refresh_6hrs</item>
+        <item>@string/weather_refresh_8hrs</item>
+    </string-array>
+	
+    <string-array name="weather_interval_values" translatable="false">
+        <item>0</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>240</item>
+        <item>360</item>
+        <item>480</item>
     </string-array>
 </resources>

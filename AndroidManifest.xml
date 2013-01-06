@@ -57,6 +57,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.CreateShortcut"
@@ -152,6 +153,13 @@
         </activity>
         <activity android:name=".activities.UIGraphicActivity"
             android:label="@string/ui_graphicss_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.UIWeatherActivity"
+            android:label="@string/lockscreen_weather_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
@@ -329,6 +337,12 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
+        <activity android:name=".activities.MemoryManagementActivity"
+            android:label="@string/memory_management_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.HapticTweaksActivity"
             android:label="@string/haptic_title">
             <intent-filter>
@@ -400,6 +414,18 @@
         </activity>
 
         <activity android:name=".activities.PowerWidgetOrderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.TileViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.TileViewOrderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

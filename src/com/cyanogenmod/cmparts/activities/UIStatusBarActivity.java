@@ -70,6 +70,8 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private static final String PREF_STATUS_BAR_CLOCK = "pref_status_bar_clock";
 
+    private static final String PREF_STATUS_BAR_WEEKDAY = "pref_status_bar_weekday";
+
     private static final String PREF_STATUS_BAR_CM_WIFI_TEXT = "pref_status_bar_cm_wifi_text";
 
     private static final String PREF_STATUS_BAR_DATE = "pref_status_bar_date";
@@ -78,11 +80,15 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private static final String PREF_STATUS_BAR_SHOWRAM = "pref_status_bar_showram";
 
+    private static final String PREF_STATUS_BAR_SHOWICONEX = "pref_status_bar_showiconex";
+
     private static final String PREF_TRACKER = "pref_tracker";
 
     private static final String PREF_STATUS_BAR_EXPANDED = "pref_status_bar_expanded";
 
     private static final String PREF_STATUS_BAR_INTRUDER = "pref_status_bar_intruder";
+
+    private static final String PREF_STATUS_BAR_INTRUDER_TIME = "pref_status_bar_intruder_time";
 
     private static final String PREF_STATUS_BAR_NOTIF = "pref_status_bar_notif";
 
@@ -213,6 +219,10 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private ListPreference mStatusBarClock;
 
+    private ListPreference mStatusBarWeekday;
+
+    private ListPreference mStatusBarIntruTime;
+
     private CheckBoxPreference mStatusBarReverse;
 
     private ListPreference mStatusBarCarrier;
@@ -220,6 +230,8 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
     private CheckBoxPreference mStatusBarTiny;
 
     private CheckBoxPreference mStatusBarRam;
+
+    private CheckBoxPreference mStatusBarIconex;
 
     private ListPreference mStatusBarExpanded;
 
@@ -338,6 +350,18 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         mStatusBarClock.setValue(String.valueOf(clockAct));
         mStatusBarClock.setOnPreferenceChangeListener(this);
 
+        mStatusBarWeekday = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_WEEKDAY);
+        int weekdayAct = Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_WEEKDAY, 2);
+        mStatusBarWeekday.setValue(String.valueOf(weekdayAct));
+        mStatusBarWeekday.setOnPreferenceChangeListener(this);
+
+        mStatusBarIntruTime = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_INTRUDER_TIME);
+        int intruAct = Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_INTRUDER_TIME, 3000);
+        mStatusBarIntruTime.setValue(String.valueOf(intruAct));
+        mStatusBarIntruTime.setOnPreferenceChangeListener(this);
+
         mStatusBarCmWifiPref = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_CM_WIFI_TEXT);
         mStatusBarDate = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_DATE);
         mStatusBarIntruder = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_INTRUDER);
@@ -352,6 +376,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         mStatusBarReverse = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_REVERSE);
         mStatusBarTiny = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_TINY_EXPANDED);
         mStatusBarRam = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_SHOWRAM);
+        mStatusBarIconex = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_SHOWICONEX);
 
         mStatusBarCarrier = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_STATUSBAR_CARRIER);
         int carrierAct = Settings.System.getInt(getContentResolver(),
@@ -467,6 +492,8 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 Settings.System.STATUSBAR_TINY_EXPANDED, 1) == 1));
         mStatusBarRam.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_SHOWRAM, 1) == 1));
+        mStatusBarIconex.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_SHOWICONEX, 1) == 1));
         // notif
         mStatusBarNotif.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_NOTIF, 1) == 1));
@@ -882,20 +909,14 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 intent.setType("image/*");
                 intent.putExtra("crop", "true");
                 intent.putExtra("scale", true);
-                intent.putExtra("scaleUpIfNeeded", false);
-                intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+                intent.putExtra("scaleUpIfNeeded", true);
+                intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
                 int width = getWindowManager().getDefaultDisplay().getWidth();
                 int height = getWindowManager().getDefaultDisplay().getHeight();
-                Rect rect = new Rect();
-                Window window = getWindow();
-                window.getDecorView().getWindowVisibleDisplayFrame(rect);
-                int statusBarHeight = rect.top;
-                int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
-                int titleBarHeight = contentViewTop - statusBarHeight;
                 boolean isPortrait = getResources().getConfiguration().orientation ==
                     Configuration.ORIENTATION_PORTRAIT;
-                intent.putExtra("aspectX", isPortrait ? width : height - titleBarHeight);
-                intent.putExtra("aspectY", isPortrait ? height - titleBarHeight : width);
+                intent.putExtra("aspectX", isPortrait ? width : height);
+                intent.putExtra("aspectY", isPortrait ? height : width);
                 try {
                     mBackgroundNotifImageTmp.createNewFile();
                     mBackgroundNotifImageTmp.setWritable(true, false);
@@ -932,6 +953,14 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             int clockPref = Integer.parseInt(String.valueOf(newValue));
             Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_CLOCK, clockPref);
             return true;
+	} else if (preference == mStatusBarWeekday) {
+            int weekdayPref = Integer.parseInt(String.valueOf(newValue));
+            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_WEEKDAY, weekdayPref);
+            return true;
+	} else if (preference == mStatusBarIntruTime) {
+            int intruPref = Integer.parseInt(String.valueOf(newValue));
+            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_INTRUDER_TIME, intruPref);
+            return true;
         } else if (preference == mStatusBarCarrier) {
             int carrierPref = Integer.parseInt(String.valueOf(newValue));
             int carrierPrefs = Settings.System.getInt(getContentResolver(), Settings.System.STATUS_BAR_CARRIER, 0);
@@ -953,6 +982,8 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         } else if (preference == mStatusBarCarrierLogo) {
             int logosPref = Integer.parseInt(String.valueOf(newValue));
             Settings.System.putInt(getContentResolver(), Settings.System.CARRIER_LOGO, logosPref);
+            mStatusBarCarrierLogoImage.setEnabled(Settings.System.getInt(getContentResolver(),
+                Settings.System.CARRIER_LOGO, 0) != 0);
             restartStatusBar();
             return true;
         }
@@ -1029,6 +1060,11 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         } else if (preference == mStatusBarRam) {
             value = mStatusBarRam.isChecked();
             Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_SHOWRAM,
+                    value ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarIconex) {
+            value = mStatusBarIconex.isChecked();
+            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_SHOWICONEX,
                     value ? 1 : 0);
             return true;
         } else if (preference == mStatusBarBluetooth) {
