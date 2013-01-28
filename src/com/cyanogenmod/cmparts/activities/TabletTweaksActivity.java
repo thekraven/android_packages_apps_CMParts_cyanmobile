@@ -76,6 +76,8 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
     private static final String PREF_EXTEND_PM_LIST = "pref_extend_pm_list";
     private static final String PREF_SOFT_BUTTON_LIST = "pref_soft_button_list";
     private static final String PREF_NAVI_BAR_ANI = "pref_navi_bar_ani";
+    private static final String PREF_NAVI_BAR_SWIPERIGHT = "pref_navi_bar_swiperight";
+    private static final String PREF_NAVI_BAR_SWIPELEFT = "pref_navi_bar_swipeleft";
 
     private static final int REQUEST_CODE_BACK_IMAGE = 998;
 
@@ -96,6 +98,8 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
     private Preference mSquadzone;
     private ListPreference mNavisize;
     private ListPreference mNaviAnimate;
+    private ListPreference mNaviSwipeRight;
+    private ListPreference mNaviSwipeLeft;
     private ListPreference mTransparentNaviBarPref;
     private CheckBoxPreference mReverseVolumeBehavior;
     private CheckBoxPreference mVolumeRemapBehavior;
@@ -161,6 +165,18 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
         mNaviAnimate.setValue(String.valueOf(naviAnimatePref));
         mNaviAnimate.setOnPreferenceChangeListener(this);
 
+        int naviSwipeRightPref = Settings.System.getInt(getContentResolver(),
+                Settings.System.WATCH_IS_NEXT, 0);
+	mNaviSwipeRight = (ListPreference) prefSet.findPreference(PREF_NAVI_BAR_SWIPERIGHT);
+        mNaviSwipeRight.setValue(String.valueOf(naviSwipeRightPref));
+        mNaviSwipeRight.setOnPreferenceChangeListener(this);
+
+        int naviSwipeLeftPref = Settings.System.getInt(getContentResolver(),
+                Settings.System.WATCH_IS_PREVIOUS, 1);
+	mNaviSwipeLeft = (ListPreference) prefSet.findPreference(PREF_NAVI_BAR_SWIPELEFT);
+        mNaviSwipeLeft.setValue(String.valueOf(naviSwipeLeftPref));
+        mNaviSwipeLeft.setOnPreferenceChangeListener(this);
+
         int naviBarColor = Settings.System.getInt(getContentResolver(),
                 Settings.System.NAVI_BAR_COLOR, defValuesColor());
         mNaviBarColor.setSummary(Integer.toHexString(naviBarColor));
@@ -212,7 +228,7 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
                 Settings.System.UNHIDE_BUTTON, defValue));
 
         if (Settings.System.getInt(getContentResolver(),
-                            Settings.System.EXPANDED_VIEW_WIDGET, 1) == 4) {
+                            Settings.System.EXPANDED_VIEW_WIDGET, 5) == 4) {
             new AlertDialog.Builder(this)
             .setTitle("Changing Status Bar Layout")
             .setMessage("System has detect you are using Tab layout.\nneed change to default before enable statusbar bottom option.\nRestart statusbar now?")
@@ -229,7 +245,7 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
              })
             .show();
         } else if (Settings.System.getInt(getContentResolver(),
-                            Settings.System.EXPANDED_VIEW_WIDGET, 1) == 5) {
+                            Settings.System.EXPANDED_VIEW_WIDGET, 5) == 5) {
             new AlertDialog.Builder(this)
             .setTitle("Changing Status Bar Layout")
             .setMessage("System has detect you are using TileView layout.\nneed change to default before enable statusbar bottom option.\nRestart statusbar now?")
@@ -246,7 +262,7 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
              })
             .show();
         } else if (Settings.System.getInt(getContentResolver(),
-                            Settings.System.EXPANDED_VIEW_WIDGET, 1) == 3) {
+                            Settings.System.EXPANDED_VIEW_WIDGET, 5) == 3) {
             new AlertDialog.Builder(this)
             .setTitle("Changing Status Bar Layout")
             .setMessage("System has detect you are using Grid layout.\nneed change to default before enable statusbar bottom option.\nSet to default now?")
@@ -393,6 +409,14 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
         } else if (preference == mNaviAnimate) {
             int NaviAni = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.NAVI_BUTTONS_ANIMATE, NaviAni);
+            return true;
+        } else if (preference == mNaviSwipeRight) {
+            int Naviswipe = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getContentResolver(), Settings.System.WATCH_IS_NEXT, Naviswipe);
+            return true;
+        } else if (preference == mNaviSwipeLeft) {
+            int Naviswipe = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getContentResolver(), Settings.System.WATCH_IS_PREVIOUS, Naviswipe);
             return true;
         } else if (preference == mTransparentNaviBarPref) {
             int transparentNaviBarPref = Integer.parseInt(String.valueOf(newValue));

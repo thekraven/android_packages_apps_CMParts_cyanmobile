@@ -34,6 +34,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;

@@ -21,10 +21,12 @@ import com.android.internal.telephony.Phone;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.ContentResolver;
-import android.net.wimax.WimaxHelper;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
@@ -33,10 +35,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.text.InputFilter;
-import android.text.InputFilter.LengthFilter;
-import android.text.TextUtils;
-import android.widget.EditText;
 import android.util.Log;
 
 import com.cyanogenmod.cmparts.R;
@@ -60,6 +58,10 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
     private static final String EXP_FLASH_MODE = "pref_flash_mode";
     private static final String EXP_MOBILEDATANETWORK_MODE = "pref_mobiledatanetwork_mode";
     private static final String PREF_USER_WIDGETS = "pref_user_widgets";
+    private static final String PREF_ENABLE_FLIP = "pref_enable_flip";
+
+    private static final int PICK_CONTACT_REQUEST = 1;
+    private final ContactAccessor mContactAccessor = ContactAccessor.getInstance();
 
     private HashMap<CheckBoxPreference, String> mCheckBoxPrefs = new HashMap<CheckBoxPreference, String>();
 
@@ -69,7 +71,8 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
     MultiSelectListPreference mRingMode;
     ListPreference mFlashMode;
     ListPreference mMobileDataNetworkMode;
-    EditTextPreference mUserNumbers;
+    Preference mUserNumbers;
+    CheckBoxPreference mEnableFlip;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,27 +82,10 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mUserNumbers = (EditTextPreference) prefSet.findPreference(PREF_USER_WIDGETS);
-        if (mUserNumbers != null) {
-            EditText numberEditText = mUserNumbers.getEditText();
-
-            if (numberEditText != null) {
-                InputFilter lengthFilter = new InputFilter.LengthFilter(25);
-                numberEditText.setFilters(new InputFilter[]{lengthFilter});
-                numberEditText.setSingleLine(true);
-            }
-        }
-
-        String userNumber = Settings.System.getString(getContentResolver(),
-                Settings.System.USER_MY_NUMBERS);
-
-        if (userNumber == null || userNumber.equals("") || TextUtils.isEmpty(userNumber)) {
-            userNumber = "000000000";
-            Settings.System.putString(getContentResolver(), Settings.System.USER_MY_NUMBERS,
-		    userNumber);
-	}
-        mUserNumbers.setText(userNumber);
-        mUserNumbers.setOnPreferenceChangeListener(this);
+        mUserNumbers = (Preference) prefSet.findPreference(PREF_USER_WIDGETS);
+        mEnableFlip = (CheckBoxPreference) prefSet.findPreference(PREF_ENABLE_FLIP);
+        mEnableFlip.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.ENABLE_FLIP_ANIMATE, 1) == 1));
 
         mBrightnessMode = (MultiSelectListPreference) prefSet.findPreference(EXP_BRIGHTNESS_MODE);
         mBrightnessMode.setValue(Settings.System.getString(getContentResolver(), Settings.System.EXPANDED_BRIGHTNESS_MODE));
@@ -127,12 +113,6 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
 
         // get our list of tiles
         ArrayList<String> tileList = TileViewUtil.getTileListFromString(TileViewUtil.getCurrentTiles(this));
-
-        // Don't show WiMAX option if not supported
-        boolean isWimaxEnabled = WimaxHelper.isWimaxSupported(this);
-        if (!isWimaxEnabled) {
-            TileViewUtil.TILES.remove(TileViewUtil.TILE_WIMAX);
-        }
 
         // fill that checkbox map!
         for(TileViewUtil.TileInfo tile : TileViewUtil.TILES.values()) {
@@ -180,10 +160,6 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
                 if (!knownState) {
                     cb.setEnabled(false);
                     mNetworkMode.setEnabled(false);
-                }
-            } else if (TileViewUtil.TILE_WIMAX.equals(tile.getId())) {
-                if (!isWimaxEnabled) {
-                    cb.setEnabled(false);
                 }
             }
 
@@ -233,7 +209,15 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
                     TileViewUtil.getCurrentTiles(this), TileViewUtil.getTileStringFromList(tileList)));
             return true;
         }
-
+        if (preference == mUserNumbers) {
+            startActivityForResult(mContactAccessor.getPickContactIntent(), PICK_CONTACT_REQUEST);
+            return true;
+        }
+        if (preference == mEnableFlip) {
+            Settings.System.putInt(getContentResolver(), Settings.System.ENABLE_FLIP_ANIMATE,
+                    mEnableFlip.isChecked() ? 1 : 0);
+            return true;
+        }
         return false;
     }
 
@@ -249,6 +233,38 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
             }
         });
         alert.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK){
+            return;
+        }
+
+        switch(requestCode) {
+            case PICK_CONTACT_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    loadContactInfo(data.getData());
+                }
+                break;
+        }
+    }
+
+    private void loadContactInfo(Uri contactUri) {
+        AsyncTask<Uri, Void, ContactInfo> task = new AsyncTask<Uri, Void, ContactInfo>() {
+
+            @Override
+            protected ContactInfo doInBackground(Uri... uris) {
+                return mContactAccessor.loadContact(getContentResolver(), uris[0]);
+            }
+
+            @Override
+            protected void onPostExecute(ContactInfo result) {
+                Settings.System.putString(getContentResolver(), Settings.System.USER_MY_NUMBERS, result.getPhoneNumber());
+            }
+        };
+
+        task.execute(contactUri);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -268,15 +284,6 @@ public class TileViewActivity extends PreferenceActivity implements OnPreference
 	} else if(preference == mMobileDataNetworkMode) {
             int value = Integer.valueOf((String)newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_MOBILEDATANETWORK_MODE, value);
-        } else if (preference == mUserNumbers) {
-            String userNumbers = String.valueOf(newValue);
-            if (userNumbers == null || userNumbers.equals("")|| TextUtils.isEmpty(userNumbers)) {
-               userNumbers = "000000000";
-               Settings.System.putString(getContentResolver(), Settings.System.USER_MY_NUMBERS, userNumbers);
-	    } else {
-               Settings.System.putString(getContentResolver(), Settings.System.USER_MY_NUMBERS, userNumbers);
-            }
-            usersWidgets();
         }
         return true;
     }
