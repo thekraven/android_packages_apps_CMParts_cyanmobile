@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<PreferenceCategory android:title="@string/general_title">
+                <ListPreference
+                    android:key="pie_trigger"
+                    android:dialogTitle="@string/pie_trigger_title"
+                    android:title="@string/pie_trigger_title"
+                    android:summary="@string/pie_trigger_summary"
+                    android:entries="@array/entries_pie_trigger"
+                    android:entryValues="@array/values_pie_trigger" />
+
 		<ListPreference
                      android:key="pie_gravity"
                      android:dialogTitle="@string/pie_gravity_title"
@@ -24,6 +32,22 @@
                      android:summary="@string/pie_mode_summary"
                      android:entries="@array/entries_pie_mode"
                      android:entryValues="@array/values_pie_mode" />
+
+                <ListPreference
+                     android:key="pie_gap"
+                     android:dialogTitle="@string/pie_gap_title"
+                     android:title="@string/pie_gap_title"
+                     android:summary="@string/pie_gap_summary"
+                     android:entries="@array/entries_pie_gap"
+                     android:entryValues="@array/values_pie_gap" />
+
+		<PreferenceScreen android:key="input_pie_key"
+			android:title="@string/input_pie_key_title" android:summary="@string/input_pie_key_summary">
+			<intent android:action="android.intent.action.MAIN"
+				android:targetPackage="com.cyanogenmod.cmparts"
+				android:targetClass="com.cyanogenmod.cmparts.activities.PieItemsActivity" />
+		</PreferenceScreen>
+
 	</PreferenceCategory>
         <PreferenceCategory android:title="@string/pie_color_change_title">
                 <CheckBoxPreference android:key="pie_enable_color"
@@ -65,6 +89,12 @@
                         android:dialogTitle="@string/pie_clock_color_title"
                         android:title="@string/pie_clock_color_title"
                         android:summary="@string/pie_clock_color_summary"
+                        android:defaultValue="-1"/>
+                <Preference android:key="pie_outline_color"
+                        android:dependency="pie_enable_color"
+                        android:dialogTitle="@string/pie_outline_color_title"
+                        android:title="@string/pie_outline_color_title"
+                        android:summary="@string/pie_outline_color_summary"
                         android:defaultValue="-1"/>
         </PreferenceCategory>
 	<PreferenceCategory />
