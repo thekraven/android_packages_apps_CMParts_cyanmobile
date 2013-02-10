@@ -594,11 +594,11 @@
     <string name="lockscreen_style_entry_lense">Lense</string>
     <string name="lockscreen_style_entry_ring">Ring</string> 
     <string name="lockscreen_style_entry_honeycomb">Honeycomb (Beta)</string>
-    <string name="lockscreen_style_entry_circular">Circular (Alpha)</string>
+    <string name="lockscreen_style_entry_circular">Circular (Beta)</string>
     <string name="lockscreen_style_entry_sense">Sense (Beta)</string>
-    <string name="lockscreen_style_entry_icsring">Ics Ring (Alpha)</string>
-    <string name="lockscreen_style_entry_jbring">Jb Ring (Alpha)</string>
-    <string name="lockscreen_style_entry_jbglowring">Jb GlowPad (Alpha)</string>
+    <string name="lockscreen_style_entry_icsring">Ics Ring</string>
+    <string name="lockscreen_style_entry_jbring">Jb Ring</string>
+    <string name="lockscreen_style_entry_jbglowring">Jb GlowPad</string>
     <string name="lockscreen_style_entry_bebering">Bebek Ring (Alpha)</string>
     <string name="pref_rotary_style_title">Rotary style</string>
     <string name="pref_rotary_style_summary">Choose the style of the rotary wheel</string>
@@ -796,6 +796,18 @@
     <string name="pref_lowmemkill_title">Low Mem Killer</string>
     <string name="pref_lowmemkill_summary">Option for Low Mem Killer</string>
 
+    <!-- Memory management : Scrolling Cache -->
+    <string name="pref_scrollingcache_title">Scrolling cache</string>
+    <string name="pref_scrollingcache_summary">Scrolling cache may improve scrolling performance at the cost of memory</string>
+    <string name="pref_scrollingcache_force_enable">Force enable</string>
+    <string name="pref_scrollingcache_default_enable">Default enable</string>
+    <string name="pref_scrollingcache_default_disable">Default disable</string>
+    <string name="pref_scrollingcache_force_disable">Force disable</string>
+
+    <!-- Memory management : VM Heap Size -->
+    <string name="pref_heapsize_title">VM heap size</string>
+    <string name="pref_heapsize_summary">Maximum amount of memory per VM heap (requires reboot)</string>
+
     <!-- Performance Settings -->
     <string name="performance_settings_title">Performance settings</string>
     <string name="powersaver_settings_title">Power saver settings</string>
@@ -817,18 +829,6 @@
     <!-- Performance Settings : 16bpp Alpha -->
     <string name="pref_use_16bpp_alpha_title">Use 16bit transparency</string>
     <string name="pref_use_16bpp_alpha_summary">Using 16bit transparency can improve scrolling performance, but may cause visual artifacts (requires reboot)</string>
-
-    <!-- Performance Settings : Scrolling Cache -->
-    <string name="pref_scrollingcache_title">Scrolling cache</string>
-    <string name="pref_scrollingcache_summary">Scrolling cache may improve scrolling performance at the cost of memory</string>
-    <string name="pref_scrollingcache_force_enable">Force enable</string>
-    <string name="pref_scrollingcache_default_enable">Default enable</string>
-    <string name="pref_scrollingcache_default_disable">Default disable</string>
-    <string name="pref_scrollingcache_force_disable">Force disable</string>
-
-    <!-- Performance Settings : VM Heap Size -->
-    <string name="pref_heapsize_title">VM heap size</string>
-    <string name="pref_heapsize_summary">Maximum amount of memory per VM heap (requires reboot)</string>
 
     <string name="pref_vol_bootsound_title">Bootsound Volume</string>
     <string name="pref_vol_bootsound_summary">Maximum volume for Bootsound (requires reboot)</string>
@@ -1499,6 +1499,8 @@
     <string name="pie_size_gigantic">Gigantic</string>
     <string name="pie_enable_color_title">Enable color overlay</string>
     <string name="pie_enable_color_summary">Enable/disable pie color overlay</string>
+    <string name="pie_enable_control_title">Enable Pie control</string>
+    <string name="pie_enable_control_summary">Enable/disable pie control</string>
     <string name="pie_button_color_title">Change button color</string>
     <string name="pie_button_color_summary">Change button color overlay</string>
     <string name="pie_background_button_color_title">Change background color</string>
@@ -1525,8 +1527,7 @@
     <string name="pie_trigger_small">@string/pie_gap_small</string>
     <string name="pie_trigger_big">@string/pie_gap_big</string>
     <string name="pie_trigger_huge">@string/pie_gap_huge</string>
-	<string name="pie_trigger_disable">Disable</string>
-
+    <string name="pie_trigger_disable">Disable</string>
     <string name="pref_pie_buttons_home_title">Pie home</string>
     <string name="pref_pie_buttons_home1_title">Pie home level 1</string>
     <string name="pref_pie_buttons_home2_title">Pie home level 2</string>
