@@ -61,7 +61,6 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
     private static final String TRANSPARENT_NAVI_BAR_PREF = "pref_transparent_navi_bar";
     private static final String PREF_NAVI_BAR_COLOR = "pref_navi_bar_color";
     private static final String PREF_NAVI_BUTTON_COLOR = "pref_navi_button_color";
-    private static final String PREF_NAVI_GLOW_COLOR = "pref_navi_glow_color";
     private static final String PREF_STATUS_BAR_DEAD_ZONE = "pref_status_bar_dead_zone";
     private static final String PREF_SOFT_BUTTONS_LEFT = "pref_soft_buttons_left";
     private static final String PREF_DISABLE_LOCKSCREEN = "pref_disable_lockscreen";
@@ -76,13 +75,8 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
     private static final String PREF_BUTTON_CATEGORY = "pref_button_category";
     private static final String PREF_EXTEND_PM_LIST = "pref_extend_pm_list";
     private static final String PREF_SOFT_BUTTON_LIST = "pref_soft_button_list";
-    private static final String PREF_NAVI_BAR_ANI = "pref_navi_bar_ani";
-    private static final String PREF_NAVI_BAR_SWIPERIGHT = "pref_navi_bar_swiperight";
-    private static final String PREF_NAVI_BAR_SWIPELEFT = "pref_navi_bar_swipeleft";
 
     private static final int REQUEST_CODE_BACK_IMAGE = 998;
-
-    static Context mContext;
 
     private CheckBoxPreference mStatusBarBottom;
     private CheckBoxPreference mStatusBarNavi;
@@ -96,12 +90,8 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
     private CheckBoxPreference mNaviButtonColorEnable;
     private Preference mNaviBarColor;
     private Preference mNaviButtonColor;
-    private Preference mNaviGlowColor;
     private Preference mSquadzone;
     private ListPreference mNavisize;
-    private ListPreference mNaviAnimate;
-    private ListPreference mNaviSwipeRight;
-    private ListPreference mNaviSwipeLeft;
     private ListPreference mTransparentNaviBarPref;
     private CheckBoxPreference mReverseVolumeBehavior;
     private CheckBoxPreference mVolumeRemapBehavior;
@@ -118,13 +108,10 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
         setTitle(R.string.tablet_tweaks_title_head);
         addPreferencesFromResource(R.xml.tablet_settings);
 
-		mContext = this.getBaseContext();
-
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mSquadzone = (Preference) prefSet.findPreference(PREF_SQUADZONE);
         mSquadzone.setSummary("CyanMobile");
-        int defValuesNaviSize = getResources().getInteger(com.android.internal.R.integer.config_navibarsize_default_cyanmobile);
 
         mStatusBarBottom = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_BOTTOM);
         mStatusBarNavi = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_NAVI);
@@ -148,13 +135,10 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
         mNaviButtonColor = (Preference) prefSet.findPreference(PREF_NAVI_BUTTON_COLOR);
         mNaviButtonColor.setOnPreferenceChangeListener(this);
 
-        mNaviGlowColor = (Preference) prefSet.findPreference(PREF_NAVI_GLOW_COLOR);
-        mNaviGlowColor.setOnPreferenceChangeListener(this);
-
         mNavisize = (ListPreference) prefSet.findPreference(PREF_NAVISIZE);
         mNavisize.setOnPreferenceChangeListener(this);
         mNavisize.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_NAVI_SIZE, defValuesNaviSize)));
+                Settings.System.STATUSBAR_NAVI_SIZE, 35)));
 
         int transparentNaviBarPref = Settings.System.getInt(getContentResolver(),
                 Settings.System.TRANSPARENT_NAVI_BAR, 0);
@@ -164,39 +148,15 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
         navBackgroundImage = new File(getApplicationContext().getFilesDir()+"/navb_background");
         navBackgroundImageTmp = new File(getApplicationContext().getFilesDir()+"/navb_background.tmp");
 
-        int naviAnimatePref = Settings.System.getInt(getContentResolver(),
-                Settings.System.NAVI_BUTTONS_ANIMATE, 20000);
-	mNaviAnimate = (ListPreference) prefSet.findPreference(PREF_NAVI_BAR_ANI);
-        mNaviAnimate.setValue(String.valueOf(naviAnimatePref));
-        mNaviAnimate.setOnPreferenceChangeListener(this);
-
-        int naviSwipeRightPref = Settings.System.getInt(getContentResolver(),
-                Settings.System.WATCH_IS_NEXT, 0);
-	mNaviSwipeRight = (ListPreference) prefSet.findPreference(PREF_NAVI_BAR_SWIPERIGHT);
-        mNaviSwipeRight.setValue(String.valueOf(naviSwipeRightPref));
-        mNaviSwipeRight.setOnPreferenceChangeListener(this);
-
-        int naviSwipeLeftPref = Settings.System.getInt(getContentResolver(),
-                Settings.System.WATCH_IS_PREVIOUS, 1);
-	mNaviSwipeLeft = (ListPreference) prefSet.findPreference(PREF_NAVI_BAR_SWIPELEFT);
-        mNaviSwipeLeft.setValue(String.valueOf(naviSwipeLeftPref));
-        mNaviSwipeLeft.setOnPreferenceChangeListener(this);
-
         int naviBarColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.NAVI_BAR_COLOR, defValuesColor());
+                Settings.System.NAVI_BAR_COLOR, 0xFF38FF00);
         mNaviBarColor.setSummary(Integer.toHexString(naviBarColor));
         mNaviBarColor.setEnabled(transparentNaviBarPref == 4);
 
         int naviButtonColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.OVERICON_COLOR, defValuesColor());
+                Settings.System.OVERICON_COLOR, 0xFF38FF00);
         mNaviButtonColor.setSummary(Integer.toHexString(naviButtonColor));
         mNaviButtonColor.setEnabled((Settings.System.getInt(getContentResolver(),
-                Settings.System.ENABLE_OVERICON_COLOR, 1) == 1));
-
-        int naviGlowColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.NAVBAR_GLOWING_COLOR, defValuesColor());
-        mNaviGlowColor.setSummary(Integer.toHexString(naviGlowColor));
-        mNaviGlowColor.setEnabled((Settings.System.getInt(getContentResolver(),
                 Settings.System.ENABLE_OVERICON_COLOR, 1) == 1));
 
         int defValue;
@@ -239,10 +199,10 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
                 Settings.System.UNHIDE_BUTTON, defValue));
 
         if (Settings.System.getInt(getContentResolver(),
-                            Settings.System.EXPANDED_VIEW_WIDGET, 5) == 4) {
+                            Settings.System.EXPANDED_VIEW_WIDGET, 1) == 4) {
             new AlertDialog.Builder(this)
             .setTitle("Changing Status Bar Layout")
-            .setMessage("System has detect you are using Tab layout.\nneed change to default before enable statusbar bottom option.\nRestart statusbar now?")
+            .setMessage("System has detect you are using Tab layout.\nneed change to default before enable tablet tweaks.\nRestart now?")
             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 1);
@@ -256,27 +216,10 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
              })
             .show();
         } else if (Settings.System.getInt(getContentResolver(),
-                            Settings.System.EXPANDED_VIEW_WIDGET, 5) == 5) {
+                            Settings.System.EXPANDED_VIEW_WIDGET, 1) == 3) {
             new AlertDialog.Builder(this)
             .setTitle("Changing Status Bar Layout")
-            .setMessage("System has detect you are using TileView layout.\nneed change to default before enable statusbar bottom option.\nRestart statusbar now?")
-            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 1);
-                        restartStatusBar();
-                    }
-            })
-            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                         mStatusBarBottom.setEnabled(false);
-                    }
-             })
-            .show();
-        } else if (Settings.System.getInt(getContentResolver(),
-                            Settings.System.EXPANDED_VIEW_WIDGET, 5) == 3) {
-            new AlertDialog.Builder(this)
-            .setTitle("Changing Status Bar Layout")
-            .setMessage("System has detect you are using Grid layout.\nneed change to default before enable statusbar bottom option.\nSet to default now?")
+            .setMessage("System has detect you are using Grid layout.\nneed change to default before enable tablet tweaks.\nDisable now?")
             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                        Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 1);
@@ -381,7 +324,6 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
             Settings.System.putInt(getContentResolver(), Settings.System.ENABLE_OVERICON_COLOR,
                     value ? 1 : 0);
             mNaviButtonColor.setEnabled(value ? true : false);
-            mNaviGlowColor.setEnabled(value ? true : false);
             return true;
         } else if (preference == mNaviBarColor) {
             ColorPickerDialog cp = new ColorPickerDialog(this, mNaviBarColorListener, getNaviBarColor());
@@ -389,10 +331,6 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
             return true;
         } else if (preference == mNaviButtonColor) {
             ColorPickerDialog cp = new ColorPickerDialog(this, mNaviButtonColorListener, getNaviButtonColor());
-            cp.show();
-            return true;
-        } else if (preference == mNaviGlowColor) {
-            ColorPickerDialog cp = new ColorPickerDialog(this, mNaviGlowColorListener, getNaviGlowColor());
             cp.show();
             return true;
         } else if (preference == mReverseVolumeBehavior) {
@@ -419,20 +357,11 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
             return true;
         } else if (preference == mNavisize) {
             int NaviSize = Integer.valueOf((String) newValue);
-            restartStatusBar();
-            Settings.System.putInt(getContentResolver(), Settings.System.STATUSBAR_NAVI_SIZE, NaviSize);
-            return true;
-        } else if (preference == mNaviAnimate) {
-            int NaviAni = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getContentResolver(), Settings.System.NAVI_BUTTONS_ANIMATE, NaviAni);
-            return true;
-        } else if (preference == mNaviSwipeRight) {
-            int Naviswipe = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getContentResolver(), Settings.System.WATCH_IS_NEXT, Naviswipe);
-            return true;
-        } else if (preference == mNaviSwipeLeft) {
-            int Naviswipe = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getContentResolver(), Settings.System.WATCH_IS_PREVIOUS, Naviswipe);
+            if (Settings.System.getInt(getContentResolver(),
+                             Settings.System.NAVI_BUTTONS, 0) == 1) {
+                restartStatusBar();
+                Settings.System.putInt(getContentResolver(), Settings.System.STATUSBAR_NAVI_SIZE, NaviSize);
+            }
             return true;
         } else if (preference == mTransparentNaviBarPref) {
             int transparentNaviBarPref = Integer.parseInt(String.valueOf(newValue));
@@ -448,17 +377,17 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
                 intent.putExtra("scale", true);
                 intent.putExtra("scaleUpIfNeeded", false);
                 intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
-                int width = getWindowManager().getDefaultDisplay().getWidth();
+                int width = 32;
+                int height = 32;
                 Rect rect = new Rect();
                 Window window = getWindow();
                 window.getDecorView().getWindowVisibleDisplayFrame(rect);
-                int naviBarsHeight = rect.bottom;
-                int contentViewBottom = window.findViewById(Window.ID_ANDROID_CONTENT).getBottom();
-                int naviBarHeight = contentViewBottom - naviBarsHeight;
+                int naviBarHeight = Settings.System.getInt(getContentResolver(),
+                      Settings.System.STATUSBAR_NAVI_SIZE, 35);
                 boolean isPortrait = getResources().getConfiguration().orientation ==
                     Configuration.ORIENTATION_PORTRAIT;
-                intent.putExtra("aspectX", isPortrait ? width : naviBarHeight);
-                intent.putExtra("aspectY", isPortrait ? naviBarHeight : width);
+                intent.putExtra("aspectX", isPortrait ? (width + naviBarHeight + naviBarHeight) : naviBarHeight);
+                intent.putExtra("aspectY", isPortrait ? naviBarHeight : (width + naviBarHeight + naviBarHeight));
                 try {
                     navBackgroundImageTmp.createNewFile();
                     navBackgroundImageTmp.setWritable(true, false);
@@ -471,8 +400,13 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
                     Log.e("Picker", "ActivityNotFoundException: ", e);
                 }
             } else {
-                if (transparentNaviBarPref != 4) {
+                if (transparentNaviBarPref == 4) {
+                // do nothing
+                } else {
+                  if (Settings.System.getInt(getContentResolver(),
+                             Settings.System.NAVI_BUTTONS, 0) == 1) {
                     restartStatusBar();
+                  }
                 }
             }
             return true;
@@ -493,7 +427,7 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.NAVI_BAR_COLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -516,16 +450,7 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.OVERICON_COLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
-        }
-    }
-
-    private int getNaviGlowColor() {
-        try {
-            return Settings.System.getInt(getContentResolver(),
-                     Settings.System.NAVBAR_GLOWING_COLOR);
-        } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -550,32 +475,6 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
             public void colorUpdate(int color) {
             }
     };
-
-    ColorPickerDialog.OnColorChangedListener mNaviGlowColorListener =
-        new ColorPickerDialog.OnColorChangedListener() {
-            public void colorChanged(int color) {
-                Handler h = new Handler();
-                if (Settings.System.getInt(getContentResolver(), Settings.System.ENABLE_OVERICON_COLOR, 1) == 1) {
-                    Settings.System.putInt(getContentResolver(), Settings.System.ENABLE_OVERICON_COLOR, 2);
-                }
-                Settings.System.putInt(getContentResolver(), Settings.System.NAVBAR_GLOWING_COLOR, color);
-                mNaviGlowColor.setSummary(Integer.toHexString(color));
-                h.postDelayed(new Runnable() {
-                   @Override
-                   public void run() {
-                    if (Settings.System.getInt(getContentResolver(), Settings.System.ENABLE_OVERICON_COLOR, 1) == 2) {
-                       Settings.System.putInt(getContentResolver(), Settings.System.ENABLE_OVERICON_COLOR, 1);
-                    }
-                   }
-                }, 100);
-            }
-            public void colorUpdate(int color) {
-            }
-    };
-
-    private int defValuesColor() {
-        return getResources().getInteger(com.android.internal.R.color.color_default_cyanmobile);
-    }
 
     private void updateDependencies() {
         if(!mStatusBarBottom.isChecked()){
@@ -607,9 +506,6 @@ public class TabletTweaksActivity extends PreferenceActivity implements OnPrefer
                     if (navBackgroundImageTmp.exists()) {
                         navBackgroundImageTmp.delete();
                     }
-                    int transparentsNaviBarPref = Settings.System.getInt(getContentResolver(),
-                         Settings.System.TRANSPARENT_NAVI_BAR, 0);
-                    mTransparentNaviBarPref.setValue(String.valueOf(transparentsNaviBarPref));
                     Toast.makeText(context, "CyanMobile navibar background not set" ,Toast.LENGTH_LONG).show();
                 } else {
                    if (navBackgroundImageTmp.exists()) {

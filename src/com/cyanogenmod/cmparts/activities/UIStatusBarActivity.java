@@ -70,27 +70,17 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private static final String PREF_STATUS_BAR_CLOCK = "pref_status_bar_clock";
 
-    private static final String PREF_STATUS_BAR_WEEKDAY = "pref_status_bar_weekday";
-
     private static final String PREF_STATUS_BAR_CM_WIFI_TEXT = "pref_status_bar_cm_wifi_text";
 
     private static final String PREF_STATUS_BAR_DATE = "pref_status_bar_date";
 
     private static final String PREF_STATUS_BAR_TINY_EXPANDED = "pref_status_bar_tiny_expanded";
 
-    private static final String PREF_STATUS_BAR_SHOWRAM = "pref_status_bar_showram";
-
-    private static final String PREF_STATUS_BAR_SHOWICONEX = "pref_status_bar_showiconex";
-
-    private static final String PREF_TRACKER = "pref_tracker";
-
     private static final String PREF_STATUS_BAR_EXPANDED = "pref_status_bar_expanded";
 
     private static final String PREF_STATUS_BAR_INTRUDER = "pref_status_bar_intruder";
 
-    private static final String PREF_STATUS_BAR_INTRUDER_TIME = "pref_status_bar_intruder_time";
-
-    private static final String PREF_STATUS_BAR_NOTIF = "pref_status_bar_notif";
+    //private static final String PREF_STATUS_BAR_NOTIF = "pref_status_bar_notif";
 
     private static final String PREF_STATUS_BAR_ICON = "pref_status_bar_icon";
 
@@ -145,8 +135,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private static final String PREF_STATUS_BAR_COLOR = "pref_status_bar_color";
 
-    private static final String PREF_TRACKER_COLOR = "pref_tracker_color";
-
     private static final String PREF_NOTIFICATION_BACKGROUND_COLOR = "pref_notification_background_color";
 
     private static final String PREF_TRANSPARENT_NOTIFICATION_BACKGROUND = "pref_transparent_notification_background";
@@ -197,8 +185,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private ListPreference mStatusBarBattery;
 
-    private ListPreference mTracker;
-
     private ListPreference mStatusBarBatteryStyle;
 
     private ListPreference mStatusBarBatteryColor;
@@ -219,19 +205,11 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private ListPreference mStatusBarClock;
 
-    private ListPreference mStatusBarWeekday;
-
-    private ListPreference mStatusBarIntruTime;
-
     private CheckBoxPreference mStatusBarReverse;
 
     private ListPreference mStatusBarCarrier;
 
     private CheckBoxPreference mStatusBarTiny;
-
-    private CheckBoxPreference mStatusBarRam;
-
-    private CheckBoxPreference mStatusBarIconex;
 
     private ListPreference mStatusBarExpanded;
 
@@ -239,7 +217,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private CheckBoxPreference mStatusBarIntruder;
 
-    private CheckBoxPreference mStatusBarNotif;
+    //private CheckBoxPreference mStatusBarNotif;
 
     private CheckBoxPreference mStatusBarIcon;
 
@@ -252,8 +230,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
     private Preference mStatusBarCarrierColor;
 
     private Preference mStatusBarColor;
-
-    private Preference mTrackerColor;
 
     private Preference mSquadzone;
 
@@ -339,10 +315,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
         mSquadzone = (Preference) prefSet.findPreference(PREF_SQUADZONE);
         mSquadzone.setSummary("CyanMobile");
-        int defValuesFontSize = getResources().getInteger(com.android.internal.R.integer.config_fontsize_default_cyanmobile);
-        int defValuesIconSize = getResources().getInteger(com.android.internal.R.integer.config_iconsize_default_cyanmobile);
-        int defValuesStatsSize = getResources().getInteger(com.android.internal.R.integer.config_statbarsize_default_cyanmobile);
-        int defValuesTinyExpSize = getResources().getInteger(com.android.internal.R.integer.config_tinyexpsize_default_cyanmobile);
 
         mStatusBarClock = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_CLOCK);
         int clockAct = Settings.System.getInt(getContentResolver(),
@@ -350,22 +322,10 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         mStatusBarClock.setValue(String.valueOf(clockAct));
         mStatusBarClock.setOnPreferenceChangeListener(this);
 
-        mStatusBarWeekday = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_WEEKDAY);
-        int weekdayAct = Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_WEEKDAY, 2);
-        mStatusBarWeekday.setValue(String.valueOf(weekdayAct));
-        mStatusBarWeekday.setOnPreferenceChangeListener(this);
-
-        mStatusBarIntruTime = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_INTRUDER_TIME);
-        int intruAct = Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_INTRUDER_TIME, 3000);
-        mStatusBarIntruTime.setValue(String.valueOf(intruAct));
-        mStatusBarIntruTime.setOnPreferenceChangeListener(this);
-
         mStatusBarCmWifiPref = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_CM_WIFI_TEXT);
         mStatusBarDate = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_DATE);
         mStatusBarIntruder = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_INTRUDER);
-        mStatusBarNotif = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_NOTIF);
+        //mStatusBarNotif = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_NOTIF);
         mStatusBarIcon = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_ICON);
         mStatusBarAlarm = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_ALARM);
         mStatusBarWifi = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_WIFI);
@@ -375,8 +335,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         mStatusBarSync = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_SYNC);
         mStatusBarReverse = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_REVERSE);
         mStatusBarTiny = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_TINY_EXPANDED);
-        mStatusBarRam = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_SHOWRAM);
-        mStatusBarIconex = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_SHOWICONEX);
 
         mStatusBarCarrier = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_STATUSBAR_CARRIER);
         int carrierAct = Settings.System.getInt(getContentResolver(),
@@ -386,7 +344,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
         mStatusBarExpanded = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_EXPANDED);
         int expandedAct = Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_EXPANDED_SIZE, defValuesTinyExpSize);
+                Settings.System.STATUSBAR_EXPANDED_SIZE, 40);
         mStatusBarExpanded.setValue(String.valueOf(expandedAct));
         mStatusBarExpanded.setOnPreferenceChangeListener(this);
 
@@ -447,27 +405,27 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         mClockFontsize = (ListPreference) prefSet.findPreference(PREF_CLOCKFONTSIZE);
         mClockFontsize.setOnPreferenceChangeListener(this);
         mClockFontsize.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_CLOCK_FONT_SIZE, defValuesFontSize)));
+                Settings.System.STATUSBAR_CLOCK_FONT_SIZE, 11)));
         // carrier font size
         mCarrierFontsize = (ListPreference) prefSet.findPreference(PREF_CARRIERFONTSIZE);
         mCarrierFontsize.setOnPreferenceChangeListener(this);
         mCarrierFontsize.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_CARRIER_FONT_SIZE, defValuesFontSize)));
+                Settings.System.STATUSBAR_CARRIER_FONT_SIZE, 11)));
         // icon font size
         mIconFontsize = (ListPreference) prefSet.findPreference(PREF_ICONFONTSIZE);
         mIconFontsize.setOnPreferenceChangeListener(this);
         mIconFontsize.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_ICON_FONT_SIZE, defValuesFontSize)));
+                Settings.System.STATUSBAR_ICON_FONT_SIZE, 11)));
         // icon size
         mIconsize = (ListPreference) prefSet.findPreference(PREF_ICONSIZE);
         mIconsize.setOnPreferenceChangeListener(this);
         mIconsize.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_ICONS_SIZE, defValuesIconSize)));
+                Settings.System.STATUSBAR_ICONS_SIZE, 25)));
 
         mStatsize = (ListPreference) prefSet.findPreference(PREF_STATSIZE);
         mStatsize.setOnPreferenceChangeListener(this);
         mStatsize.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_STATS_SIZE, defValuesStatsSize)));
+                Settings.System.STATUSBAR_STATS_SIZE, 25)));
 
         // wifi
         mStatusBarCmWifiPref.setChecked((Settings.System.getInt(getContentResolver(),
@@ -489,14 +447,10 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 Settings.System.STATUS_BAR_SYNC, 1) != 1) && (Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_CM_SIGNAL_TEXT, 0) == 4));
         mStatusBarTiny.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUSBAR_TINY_EXPANDED, 1) == 1));
-        mStatusBarRam.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_SHOWRAM, 1) == 1));
-        mStatusBarIconex.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_SHOWICONEX, 1) == 1));
+                Settings.System.STATUSBAR_TINY_EXPANDED, 0) == 1));
         // notif
-        mStatusBarNotif.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_NOTIF, 1) == 1));
+        //mStatusBarNotif.setChecked((Settings.System.getInt(getContentResolver(),
+        //        Settings.System.STATUS_BAR_NOTIF, 1) == 1));
         // alarm
         mStatusBarAlarm.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_ALARM, 1) == 1));
@@ -593,8 +547,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         mStatusBarBatteryColor.setOnPreferenceChangeListener(this);
         mStatusBarBatteryColor.setEnabled(statusBarBattery == 3 ||
                  statusBarBattery == 4 || statusBarBattery == 5 ||
-                 statusBarBattery == 6 || statusBarBattery == 7 ||
-                 statusBarBattery == 8 || statusBarBattery == 9);
+                 statusBarBattery == 6 || statusBarBattery == 7);
 
         int signalStyle = Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_CM_SIGNAL_TEXT, 0);
@@ -637,11 +590,11 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 statusBarCarrierLabel == 3);
 
         int clockColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_CLOCKCOLOR, defValuesColor());
+                Settings.System.STATUS_BAR_CLOCKCOLOR, 0xFF38FF00);
         mStatusBarClockColor.setSummary(Integer.toHexString(clockColor));
 
         int carrierColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_CARRIERCOLOR, defValuesColor());
+                Settings.System.STATUS_BAR_CARRIERCOLOR, 0xFF38FF00);
         mStatusBarCarrierColor.setSummary(Integer.toHexString(carrierColor));
 
         int transparentStatusBarPref = Settings.System.getInt(getContentResolver(),
@@ -669,19 +622,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 Settings.System.NOTIFICATION_BACKGROUND_COLOR, 0);
         mNotificationBackgroundColor.setSummary(Integer.toHexString(notificationBackgroundColor));
         mNotificationBackgroundColor.setEnabled(transparentNotificationBackgroundPref == 2);
-
-        mTracker = (ListPreference) prefSet.findPreference(PREF_TRACKER);
-        int trackAct = Settings.System.getInt(getContentResolver(),
-                Settings.System.TRANSPARENT_STS_BTT, 0);
-        mTracker.setValue(String.valueOf(trackAct));
-        mTracker.setOnPreferenceChangeListener(this);
-
-        mTrackerColor = (Preference) prefSet.findPreference(PREF_TRACKER_COLOR);
-        mTrackerColor.setOnPreferenceChangeListener(this);
-        int trackColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.STS_BTT_COLOR, 0);
-        mTrackerColor.setSummary(Integer.toHexString(trackColor));
-        mTrackerColor.setEnabled(trackAct == 1);
 
         // Set up the warning
         alertDialog = new AlertDialog.Builder(this).create();
@@ -742,24 +682,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                   restartStatusBar();
                 } else {
                   Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_BATTERY, 7);
-                }
-                mStatusBarBatteryStyle.setEnabled(false);
-                mStatusBarBatteryColor.setEnabled(true);
-            } else if (statusBarBattery == 8) {
-                if (StatusStyle) {
-                  Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_BATTERY, 8);
-                  restartStatusBar();
-                } else {
-                  Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_BATTERY, 8);
-                }
-                mStatusBarBatteryStyle.setEnabled(false);
-                mStatusBarBatteryColor.setEnabled(true);
-            } else if (statusBarBattery == 9) {
-                if (StatusStyle) {
-                  Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_BATTERY, 9);
-                  restartStatusBar();
-                } else {
-                  Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_BATTERY, 9);
                 }
                 mStatusBarBatteryStyle.setEnabled(false);
                 mStatusBarBatteryColor.setEnabled(true);
@@ -847,14 +769,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                     Settings.System.CARRIER_LABEL_CUSTOM_STRING,
                     carrierLabelCustom);
             return true;
-        } else if (preference == mTracker) {
-            int intValue = Integer.valueOf((String) newValue);
-            if (intValue != 1) {
-                Settings.System.putInt(getContentResolver(), Settings.System.TRANSPARENT_STS_BTT, intValue);
-                restartStatusBar();
-            }
-            mTrackerColor.setEnabled(intValue == 1);
-            return true;
         } else if (preference == mTransparentStatusBarPref) {
             int transparentStatusBarPref = Integer.parseInt(String.valueOf(newValue));
             if ((transparentStatusBarPref != 6) || (transparentStatusBarPref != 4)) {
@@ -869,7 +783,8 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 intent.putExtra("scale", true);
                 intent.putExtra("scaleUpIfNeeded", false);
                 intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
-                int width = getWindowManager().getDefaultDisplay().getWidth();
+                int width = 32;
+                int height = 32;
                 Rect rect = new Rect();
                 Window window = getWindow();
                 window.getDecorView().getWindowVisibleDisplayFrame(rect);
@@ -878,8 +793,8 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 int titleBarHeight = contentViewTop - statusBarHeight;
                 boolean isPortrait = getResources().getConfiguration().orientation ==
                     Configuration.ORIENTATION_PORTRAIT;
-                intent.putExtra("aspectX", isPortrait ? width : titleBarHeight);
-                intent.putExtra("aspectY", isPortrait ? titleBarHeight : width);
+                intent.putExtra("aspectX", isPortrait ? (width + statusBarHeight + statusBarHeight) : statusBarHeight);
+                intent.putExtra("aspectY", isPortrait ? statusBarHeight : (width + statusBarHeight + statusBarHeight));
                 try {
                     backBackgroundImageTmp.createNewFile();
                     backBackgroundImageTmp.setWritable(true, false);
@@ -892,7 +807,11 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                     Log.e("Picker", "ActivityNotFoundException: ", e);
                 }
             } else {
-                if ((transparentStatusBarPref != 4) || (transparentStatusBarPref != 6)) {
+                if (transparentStatusBarPref == 4) {
+                // do nothing
+                } else if (transparentStatusBarPref == 6) {
+                // do nothing
+                } else {
                    restartStatusBar();
                 }
             }
@@ -909,14 +828,20 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 intent.setType("image/*");
                 intent.putExtra("crop", "true");
                 intent.putExtra("scale", true);
-                intent.putExtra("scaleUpIfNeeded", true);
-                intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+                intent.putExtra("scaleUpIfNeeded", false);
+                intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
                 int width = getWindowManager().getDefaultDisplay().getWidth();
                 int height = getWindowManager().getDefaultDisplay().getHeight();
+                Rect rect = new Rect();
+                Window window = getWindow();
+                window.getDecorView().getWindowVisibleDisplayFrame(rect);
+                int statusBarHeight = rect.top;
+                int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+                int titleBarHeight = contentViewTop - statusBarHeight;
                 boolean isPortrait = getResources().getConfiguration().orientation ==
                     Configuration.ORIENTATION_PORTRAIT;
-                intent.putExtra("aspectX", isPortrait ? width : height);
-                intent.putExtra("aspectY", isPortrait ? height : width);
+                intent.putExtra("aspectX", isPortrait ? width : height - titleBarHeight);
+                intent.putExtra("aspectY", isPortrait ? height - titleBarHeight : width);
                 try {
                     mBackgroundNotifImageTmp.createNewFile();
                     mBackgroundNotifImageTmp.setWritable(true, false);
@@ -929,7 +854,11 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                     Log.e("Picker", "ActivityNotFoundException: ", e);
                 }
             }
-            if ((transparentNotificationBackgroundPref != 5) || (transparentNotificationBackgroundPref != 2)) {
+            if (transparentNotificationBackgroundPref == 5) {
+                //do nothings
+            } else if (transparentNotificationBackgroundPref == 2) {
+                //do nothings
+            } else {
                 restartStatusBar();
             }
             return true;
@@ -953,14 +882,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             int clockPref = Integer.parseInt(String.valueOf(newValue));
             Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_CLOCK, clockPref);
             return true;
-	} else if (preference == mStatusBarWeekday) {
-            int weekdayPref = Integer.parseInt(String.valueOf(newValue));
-            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_WEEKDAY, weekdayPref);
-            return true;
-	} else if (preference == mStatusBarIntruTime) {
-            int intruPref = Integer.parseInt(String.valueOf(newValue));
-            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_INTRUDER_TIME, intruPref);
-            return true;
         } else if (preference == mStatusBarCarrier) {
             int carrierPref = Integer.parseInt(String.valueOf(newValue));
             int carrierPrefs = Settings.System.getInt(getContentResolver(), Settings.System.STATUS_BAR_CARRIER, 0);
@@ -982,8 +903,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         } else if (preference == mStatusBarCarrierLogo) {
             int logosPref = Integer.parseInt(String.valueOf(newValue));
             Settings.System.putInt(getContentResolver(), Settings.System.CARRIER_LOGO, logosPref);
-            mStatusBarCarrierLogoImage.setEnabled(Settings.System.getInt(getContentResolver(),
-                Settings.System.CARRIER_LOGO, 0) != 0);
             restartStatusBar();
             return true;
         }
@@ -1019,7 +938,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 mStatusBar3g.setChecked(false);
                 mStatusBarGPS.setChecked(false);
                 mStatusBarSync.setChecked(false);
-                mStatusBarNotif.setChecked(false);
+                //mStatusBarNotif.setChecked(false);
             } else {
                 Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_ALARM, 1);
                 Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_NOTIF, 1);
@@ -1038,7 +957,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 mStatusBar3g.setChecked(true);
                 mStatusBarGPS.setChecked(true);
                 mStatusBarSync.setChecked(true);
-                mStatusBarNotif.setChecked(true);
+                //mStatusBarNotif.setChecked(true);
             }
             return true;
 	} else if (preference == mStatusBarCmWifiPref) {
@@ -1056,16 +975,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             Settings.System.putInt(getContentResolver(), Settings.System.STATUSBAR_TINY_EXPANDED,
                     value ? 1 : 0);
             restartStatusBar();
-            return true;
-        } else if (preference == mStatusBarRam) {
-            value = mStatusBarRam.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_SHOWRAM,
-                    value ? 1 : 0);
-            return true;
-        } else if (preference == mStatusBarIconex) {
-            value = mStatusBarIconex.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_SHOWICONEX,
-                    value ? 1 : 0);
             return true;
         } else if (preference == mStatusBarBluetooth) {
             value = mStatusBarBluetooth.isChecked();
@@ -1097,11 +1006,11 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_INTRUDER_ALERT,
                     value ? 1 : 0);
             return true;
-	} else if (preference == mStatusBarNotif) {
-            value = mStatusBarNotif.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_NOTIF,
-                    value ? 1 : 0);
-            return true;
+	//} else if (preference == mStatusBarNotif) {
+        //    value = mStatusBarNotif.isChecked();
+        //    Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_NOTIF,
+        //            value ? 1 : 0);
+        //    return true;
 	} else if (preference == mStatusBarClockColor) {
             ColorPickerDialog cp = new ColorPickerDialog(this, mClockColorListener, getClockColor());
             cp.show();
@@ -1206,12 +1115,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             SBColorPickerDialog sbcp = new SBColorPickerDialog(this, mStatusBarColorListener, getStatusBarColor());
             sbcp.show();
             return true;
-        } else if (preference == mTrackerColor) {
-            ColorPickerDialog cp = new ColorPickerDialog(this,
-                mTrackerColorListener,
-                readTrackerColor());
-            cp.show();
-            return true;
         } else if (preference == mNotificationBackgroundColor) {
             NBColorPickerDialog nbcp = new NBColorPickerDialog(this, mNotificationBackgroundColorListener, getNotificationBackgroundColor());
             nbcp.show();
@@ -1260,7 +1163,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.STATUS_BAR_COLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1281,7 +1184,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.NOTIFICATION_BACKGROUND_COLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1302,7 +1205,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.STATUS_BAR_CLOCKCOLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1321,7 +1224,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.STATUS_BAR_CARRIERCOLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1340,7 +1243,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_DATE);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1358,7 +1261,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.STATUS_BAR_SETTINGSCOLOR);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1376,7 +1279,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_TICKER_TEXT);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1394,7 +1297,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_NONE);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1412,7 +1315,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_LATEST);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1430,7 +1333,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_ONGOING);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1443,16 +1346,12 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             }
     };
 
-    private int defValuesColor() {
-        return getResources().getInteger(com.android.internal.R.color.color_default_cyanmobile);
-    }
-
     private int readClearFontColor() {
         try {
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_CLEAR_BUTTON);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
 
         }
     }
@@ -1471,7 +1370,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_ITEM_TITLE);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1489,7 +1388,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_ITEM_TEXT);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1507,7 +1406,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             return Settings.System.getInt(getContentResolver(), Settings.System.COLOR_NOTIFICATION_ITEM_TIME);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -1535,26 +1434,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         }
     };
 
-    ColorPickerDialog.OnColorChangedListener mTrackerColorListener = 
-        new ColorPickerDialog.OnColorChangedListener() {
-            public void colorChanged(int color) {
-                Settings.System.putInt(getContentResolver(), Settings.System.STS_BTT_COLOR, color);
-                Settings.System.putInt(getContentResolver(), Settings.System.TRANSPARENT_STS_BTT, 1);
-                restartStatusBar();
-            }
-            public void colorUpdate(int color) {
-            }
-    };
-
-    private int readTrackerColor() {
-        try {
-            return Settings.System.getInt(getContentResolver(), Settings.System.STS_BTT_COLOR);
-        }
-        catch (SettingNotFoundException e) {
-            return defValuesColor();
-        }
-    }
-
     private void restartStatusBar() {
         try {
             Runtime.getRuntime().exec("pkill -TERM -f  com.android.systemui");
@@ -1573,9 +1452,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                     if (mBackgroundNotifImageTmp.exists()) {
                         mBackgroundNotifImageTmp.delete();
                     }
-                    int transparentsNotificationBackgroundPref = Settings.System.getInt(getContentResolver(),
-                          Settings.System.TRANSPARENT_NOTIFICATION_BACKGROUND, 0);
-                    mTransparentNotificationBackgroundPref.setValue(String.valueOf(transparentsNotificationBackgroundPref));
                     Toast.makeText(context, "CyanMobile window shade background not set" ,Toast.LENGTH_LONG).show();
                 } else {
                    if (mBackgroundNotifImageTmp.exists()) {
@@ -1608,9 +1484,6 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                     if (backBackgroundImageTmp.exists()) {
                         backBackgroundImageTmp.delete();
                     }
-                    int transparentsStatusBarPref = Settings.System.getInt(getContentResolver(),
-                          Settings.System.TRANSPARENT_STATUS_BAR, 0);
-                    mTransparentStatusBarPref.setValue(String.valueOf(transparentsStatusBarPref));
                     Toast.makeText(context, "CyanMobile statusbar background not set" ,Toast.LENGTH_LONG).show();
                 } else {
                    if (backBackgroundImageTmp.exists()) {

@@ -168,8 +168,6 @@
 	<item>Behind Status Bar</item>
 	<item>Navi Bar Top</item>
 	<item>Navi Bar Outside</item>
-	<item>Circle</item>
-	<item>Circle Percentage</item>
         <item>Hidden</item>
     </string-array>
 
@@ -181,8 +179,6 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
-        <item>8</item>
-        <item>9</item>
         <item>2</item>
     </string-array>
 
@@ -656,24 +652,6 @@
         <item>1800000</item>
     </string-array>
 
-    <string-array name="pref_intruder_delay_entries">
-        <item>Immediately</item>
-        <item>1s</item>
-        <item>2s</item>
-        <item>3s (Default)</item>
-        <item>4s</item>  
-        <item>5s</item>
-    </string-array>
-
-    <string-array name="pref_intruder_delay_values" translatable="false">
-        <item>500</item>
-        <item>1000</item>
-        <item>2000</item>
-        <item>3000</item>
-        <item>4000</item>
-        <item>5000</item>
-    </string-array>
-
     <string-array name="pref_compcache_size_entries">
         <item>Disabled</item>
         <item>10%</item>
@@ -854,18 +832,6 @@
         <item>Hide</item>
     </string-array>
 
-    <string-array name="entries_status_bar_weekday">
-        <item>Normal</item>
-        <item>Small</item>
-        <item>None (default)</item>
-    </string-array>
-
-    <string-array name="values_status_bar_weekday" translatable="false">	
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>	
-    </string-array>
-
     <string-array name="values_status_bar_statusbar_carrier" translatable="false">
         <item>1</item>
         <item>2</item>
@@ -891,7 +857,6 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
-        <item>5</item>
         <item>0</item>
     </string-array>
 
@@ -900,7 +865,6 @@
         <item>Bottom</item>
         <item>Grid</item>
         <item>Tab</item>
-        <item>TileView</item>
         <item>Disabled</item>
     </string-array>
 
@@ -949,7 +913,6 @@
     </string-array>
 
    <string-array name="entries_brightness_widget" formatted="false" translatable="false">
-        <item>@string/cm_brightness_mode_auto</item>
         <item>@string/cm_brightness_mode_dim</item>
         <item>25%</item>
         <item>40%</item>
@@ -965,7 +928,6 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
-        <item>6</item>
     </string-array>
 
     <string-array name="entries_network_widget">
@@ -1072,9 +1034,6 @@
         <item>@string/lockscreen_style_entry_honeycomb</item>
         <item>@string/lockscreen_style_entry_circular</item>
         <item>@string/lockscreen_style_entry_sense</item>
-        <item>@string/lockscreen_style_entry_icsring</item>
-        <item>@string/lockscreen_style_entry_jbring</item>
-        <item>@string/lockscreen_style_entry_jbglowring</item>
     </string-array>
 
     <string-array name="pref_lockscreen_style_values" translatable="false">
@@ -1085,9 +1044,6 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
     </string-array>
 
     <string-array name="pref_rotary_style_entries" translatable="false">
@@ -1118,16 +1074,12 @@
         <item>@string/lockscreen_style_entry_tabs</item>
         <item>@string/lockscreen_style_entry_rotary</item>
         <item>@string/lockscreen_style_entry_ring</item>
-        <item>@string/lockscreen_style_entry_jbring</item>
-        <item>@string/lockscreen_style_entry_jbglowring</item>
     </string-array>
 
     <string-array name="pref_in_call_style_values" translatable="false">
         <item>1</item>
         <item>2</item>
         <item>4</item>
-        <item>5</item>
-        <item>6</item>
     </string-array>
 
     <string-array name="pref_lockscreen_background_entries">
@@ -1388,7 +1340,6 @@
     
     <string-array name="entries_tablet_navi_buttons">
         <item>Hide</item>
-        <item>Invisible</item>
         <item>Home</item>
         <item>Back</item>
         <item>Search</item>
@@ -1396,12 +1347,10 @@
         <item>Quick</item>
         <item>Custom app</item>
         <item>Power</item>
-        <item>Recent</item>
     </string-array>
 
     <string-array name="values_tablet_navi_buttons">
         <item>0</item>
-        <item>9</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -1409,7 +1358,6 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
-        <item>8</item>
     </string-array>
     
     <string-array name="entries_tablet_soft_buttons">
@@ -1436,7 +1384,6 @@
         <item>Quick</item>
         <item>Custom app</item>
         <item>Power</item>
-        <item>Recent</item>
     </string-array>
 
     <string-array name="values_tablet_navi_buttons_quicker">
@@ -1447,7 +1394,6 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
-        <item>7</item>
     </string-array>
 
     <string-array name="values_transparent_notification_background">
@@ -1514,30 +1460,20 @@
 
     <string-array name="entries_lowmemkill">
         <item>Default</item>
-        <item>Minimum</item>
-        <item>Maximum</item>
         <item>Every day use</item>
-        <item>System</item>
         <item>Multitasking</item>
-        <item>Soft multitasking</item>
         <item>Hard multitasking</item>
-        <item>Gaming</item>
-        <item>Soft gaming</item>
+        <item>Soft multitasking</item>
         <item>Hard gaming</item>
     </string-array>
 
     <string-array name="values_lowmemkill">
         <item>2560,4096,6144,10240,11264,12288</item>
-        <item>1536,2048,4096,5120,5632,6144</item>
-        <item>2048,3072,6144,15360,17920,20480</item>
-        <item>2560,4096,6144,7680,8704,10240</item>
-        <item>2560,3840,6400,7680,10240,12800</item>
         <item>2560,4096,6144,11264,11776,14336</item>
         <item>2560,4096,6144,11776,12288,16384</item>
         <item>2560,4096,6144,10752,11264,13312</item>
-        <item>2560,3840,6400,10240,12800,19200</item>
+        <item>2560,4096,6144,7680,8704,10240</item>
         <item>2560,4096,6144,18944,22016,23552</item>
-        <item>2560,3840,6400,12800,12800,25600</item>
     </string-array>
 
     <string-array name="entries_iosched">
@@ -1651,50 +1587,6 @@
         <item>600</item>
         <item>900</item>
         <item>1800</item>
-    </string-array>
-
-    <string-array
-        name="pref_navi_bar_swipe_entries">
-        <item>Expand Statusbar</item>
-        <item>Collapse Statusbar</item>
-        <item>Toggle QwikWidgets</item>
-        <item>None</item>
-    </string-array>
-
-    <string-array
-        name="pref_navi_bar_swipe_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array
-        name="pref_navi_bar_ani_entries">
-        <item>Disabled</item>
-        <item>Rotate if screen rotate</item>
-        <item>faster</item>
-        <item>5 seconds</item>
-        <item>10 seconds</item>
-        <item>20 seconds (Default)</item>
-        <item>30 seconds</item>
-        <item>1 minute</item>
-        <item>2 minute</item>
-        <item>5 minute</item>
-    </string-array>
-
-    <string-array
-        name="pref_navi_bar_ani_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>5000</item>
-        <item>10000</item>
-        <item>20000</item>
-        <item>30000</item>
-        <item>60000</item>
-        <item>120000</item>
-        <item>300000</item>
     </string-array>
 
     <string-array
@@ -1861,157 +1753,5 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
-    </string-array>
-
-    <string-array name="weather_interval_entries">	
-        <item>@string/weather_refresh_manual</item>
-        <item>@string/weather_refresh_30min</item>
-        <item>@string/weather_refresh_60min</item>
-        <item>@string/weather_refresh_2hrs</item>
-        <item>@string/weather_refresh_4hrs</item>
-        <item>@string/weather_refresh_6hrs</item>
-        <item>@string/weather_refresh_8hrs</item>
-    </string-array>
-	
-    <string-array name="weather_interval_values" translatable="false">
-        <item>0</item>
-        <item>30</item>
-        <item>60</item>
-        <item>120</item>
-        <item>240</item>
-        <item>360</item>
-        <item>480</item>
-    </string-array>
-
-    <string-array name="entries_pie_gravity">
-        <item>@string/pie_gravity_left</item>
-        <item>@string/pie_gravity_top</item>
-        <item>@string/pie_gravity_right</item>
-        <item>@string/pie_gravity_bottom</item>
-    </string-array>
-
-    <string-array name="values_pie_gravity" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="entries_pie_size">
-        <item>@string/pie_size_small</item>
-        <item>@string/pie_size_default</item>
-        <item>@string/pie_size_medium</item>
-        <item>@string/pie_size_large</item>
-        <item>@string/pie_size_gigantic</item>
-    </string-array>
-
-    <string-array name="values_pie_size" translatable="false">
-        <item>0.6</item>
-        <item>0.8</item>
-        <item>1.0</item>
-        <item>1.2</item>
-        <item>1.4</item>
-    </string-array>
-
-    <string-array name="entries_pie_mode">
-        <item>@string/pie_mode_bare</item>
-        <item>@string/pie_mode_quick</item>
-        <item>@string/pie_mode_default</item>
-        <item>@string/pie_mode_slow</item>
-    </string-array>
-
-    <string-array name="values_pie_mode" translatable="false">
-        <item>-1</item>
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
-    <string-array name="entries_pie_gap">	
-        <item>@string/pie_gap_closed</item>
-        <item>@string/pie_gap_small</item>
-        <item>@string/pie_gap_big</item>
-        <item>@string/pie_gap_huge</item>
-    </string-array>
-
-    <string-array name="values_pie_gap" translatable="false">
-        <item>0</item>
-        <item>1</item>	
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="entries_pie_trigger">
-        <item>@string/pie_trigger_disable</item>
-        <item>@string/pie_trigger_small</item>
-        <item>@string/pie_trigger_big</item>
-        <item>@string/pie_trigger_huge</item>
-		<item>@string/pie_trigger_disable</item>
-    </string-array>
-
-    <string-array name="values_pie_trigger" translatable="false">
-        <item>0.0</item>
-        <item>1.0</item>
-        <item>2.0</item>
-        <item>3.0</item>
-		<item>0.0</item>
-    </string-array>
-
-    <string-array name="entries_pie_buttons_home">
-        <item>Back</item>
-        <item>Home</item>
-        <item>Recent</item>
-        <item>Menu</item>
-        <item>Search</item>
-        <item>Screenshot</item>
-        <item>Power menu</item>
-        <item>Last app</item>
-        <item>Settings</item>
-        <item>Clear All</item>
-        <item>Nothing</item>
-    </string-array>
-
-    <string-array name="values_pie_buttons_home">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
-
-    <string-array name="entries_pie_buttons_homes">
-        <item>Back</item>
-        <item>Home</item>
-        <item>Recent</item>
-        <item>Menu</item>
-        <item>Search</item>
-        <item>Screenshot</item>
-        <item>Power menu</item>
-        <item>Last app</item>
-        <item>Settings</item>
-        <item>Clear All</item>
-        <item>Nothing</item>
-        <item>Custom app</item>
-    </string-array>
-
-    <string-array name="values_pie_buttons_homes">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
     </string-array>
 </resources>

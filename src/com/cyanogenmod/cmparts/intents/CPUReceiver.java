@@ -17,7 +17,6 @@
 package com.cyanogenmod.cmparts.intents;
 
 import com.cyanogenmod.cmparts.activities.CPUActivity;
-import com.cyanogenmod.cmparts.activities.MemoryManagementActivity;
 import com.cyanogenmod.cmparts.activities.PerformanceSettingsActivity;
 
 import android.content.BroadcastReceiver;
@@ -29,7 +28,6 @@ import android.os.SystemProperties;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,8 +38,6 @@ public class CPUReceiver extends BroadcastReceiver {
     private static final String CPU_SETTINGS_PROP = "sys.cpufreq.restored";
     private static final String IOSCHED_SETTINGS_PROP = "sys.iosched.restored";
     private static final String KSM_SETTINGS_PROP = "sys.ksm.restored";
-
-    private int ksmAvailable = -1;
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
@@ -96,23 +92,21 @@ public class CPUReceiver extends BroadcastReceiver {
     private void configureLOWMEMKILL(Context ctx) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
     
-        CPUActivity.writeOneLine(MemoryManagementActivity.LOWMEMKILL_RUN_FILE, prefs.getString(MemoryManagementActivity.LOWMEMKILL_PREF,
-                      MemoryManagementActivity.LOWMEMKILL_PREF_DEFAULT));
+        CPUActivity.writeOneLine(PerformanceSettingsActivity.LOWMEMKILL_RUN_FILE, prefs.getString(PerformanceSettingsActivity.LOWMEMKILL_PREF,
+                      PerformanceSettingsActivity.LOWMEMKILL_PREF_DEFAULT));
         Log.d(TAG, "LowMemKill settings restored.");
     }
 
     private void configureKSM(Context ctx) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 
-        boolean ksm = prefs.getBoolean(MemoryManagementActivity.KSM_PREF, false);
-        if (isKsmAvailable()) {
-            CPUActivity.writeOneLine(MemoryManagementActivity.KSM_SLEEP_RUN_FILE, prefs.getString(MemoryManagementActivity.KSM_SLEEP_PREF,
-                                 MemoryManagementActivity.KSM_SLEEP_PREF_DEFAULT));
-            CPUActivity.writeOneLine(MemoryManagementActivity.KSM_SCAN_RUN_FILE, prefs.getString(MemoryManagementActivity.KSM_SCAN_PREF,
-                                 MemoryManagementActivity.KSM_SCAN_PREF_DEFAULT));
-            CPUActivity.writeOneLine(MemoryManagementActivity.KSM_RUN_FILE, ksm ? "1" : "0");
-            Log.d(TAG, "KSM settings restored.");
-        }
+        boolean ksm = prefs.getBoolean(PerformanceSettingsActivity.KSM_PREF, false);
+        CPUActivity.writeOneLine(PerformanceSettingsActivity.KSM_SLEEP_RUN_FILE, prefs.getString(PerformanceSettingsActivity.KSM_SLEEP_PREF,
+                                 PerformanceSettingsActivity.KSM_SLEEP_PREF_DEFAULT));
+        CPUActivity.writeOneLine(PerformanceSettingsActivity.KSM_SCAN_RUN_FILE, prefs.getString(PerformanceSettingsActivity.KSM_SCAN_PREF,
+                                 PerformanceSettingsActivity.KSM_SCAN_PREF_DEFAULT));
+        CPUActivity.writeOneLine(PerformanceSettingsActivity.KSM_RUN_FILE, ksm ? "1" : "0");
+        Log.d(TAG, "KSM settings restored.");
     }
 
     private void configureIOSched(Context ctx) {
@@ -179,15 +173,5 @@ public class CPUReceiver extends BroadcastReceiver {
             }
             Log.d(TAG, "CPU settings restored.");
         }
-    }
-
-    /**
-     * Check if KSM support is available on the system
-     */
-    private boolean isKsmAvailable() {
-        if (ksmAvailable < 0) {
-            ksmAvailable = new File(MemoryManagementActivity.KSM_RUN_FILE).exists() ? 1 : 0;
-        }
-        return ksmAvailable > 0;
     }
 }

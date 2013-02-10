@@ -22,12 +22,9 @@
     <uses-permission android:name="android.permission.PERSISTENT_ACTIVITY" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.REVOKE_PERMISSIONS" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application android:label="@string/app_name"
-        android:icon="@drawable/cm_icon"
-        android:backupAgent=".utils.CMPartsBackupAgent"
-        android:killAfterRestore="false">
+        android:icon="@drawable/cm_icon">
         <receiver android:name=".intents.CPUReceiver" android:enabled="true" android:process="com.android.systemui">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_MOUNTED" />
@@ -50,16 +47,10 @@
                 <action android:name="android.app.NotificationManager.ACTION_NOTIFY" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".intents.BootReceiver" android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
          <activity android:name=".activities.MainActivity" android:label="@string/app_name" android:theme="@style/CustomTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.CreateShortcut"
@@ -132,13 +123,6 @@
                 <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.UIActivityGlobal"
-            android:label="@string/ui_powertitle">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activities.UIPowerWidgetActivity"
             android:label="@string/title_expanded_widget">
             <intent-filter>
@@ -155,62 +139,6 @@
         </activity>
         <activity android:name=".activities.UIGraphicActivity"
             android:label="@string/ui_graphicss_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.UIPieActivity"
-            android:label="@string/pie_controls_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.PieBackButtonsActivity"
-            android:label="@string/pie_back_controls_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.PieHomeButtonsActivity"
-            android:label="@string/pie_home_controls_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.PieMenuButtonsActivity"
-            android:label="@string/pie_menu_controls_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.PieSearchButtonsActivity"
-            android:label="@string/pie_search_controls_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.PieRecentButtonsActivity"
-            android:label="@string/pie_recent_controls_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.PieItemsActivity"
-            android:label="@string/pie_item_controls_title" android:theme="@style/CustomTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.UIWeatherActivity"
-            android:label="@string/lockscreen_weather_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
@@ -287,7 +215,7 @@
                 <category android:name="com.cyanogenmod.cmparts.SHORTCUT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.InputTweaksActivity" android:label="@string/inputtweaks_title" android:theme="@style/CustomTheme">
+        <activity android:name=".activities.InputTweaksActivity" android:label="@string/inputtweaks_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.cyanogenmod.cmparts.SHORTCUT"/>
@@ -388,12 +316,6 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MemoryManagementActivity"
-            android:label="@string/memory_management_title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
         <activity android:name=".activities.HapticTweaksActivity"
             android:label="@string/haptic_title">
             <intent-filter>
@@ -470,18 +392,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.TileViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".activities.TileViewOrderActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".activities.BatteryTester"
             android:label="Battery Tester">
         </activity>
@@ -530,8 +440,5 @@
 
         <service android:enabled="true" android:name=".services.RenderFXService" />
         <service android:enabled="true" android:name=".services.BatteryService" />
-
-        <meta-data android:name="com.google.android.backup.api_key"
-                android:value="AEdPqrEAAAAIompOxAJ61R5exr9lUOo7Hvrmk6p7Z6XtAZufZg" />
     </application>
 </manifest>

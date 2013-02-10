@@ -15,14 +15,10 @@
     <string name="input_settings_title_subhead">Input settings</string>
     <string name="input_settings_summary_head">Input behavior, buttons, haptic feedback</string>
     <string name="interface_settings_title_head">Interface</string>
-    <string name="interface_powermenu_settings_title_head">Power menu</string>
     <string name="interface_settings_summary_head">Interface tweaks, overscrolling, render effect</string>
     <string name="lockscreen_settings_title_head">Lockscreen</string>
     <string name="lockscreen_settings_title_subhead">Lockscreen settings</string>
     <string name="lockscreen_settings_summary_head">Lockscreen gestures, style, unlock options</string>
-    <string name="memory_management_settings_title_head">Memory management</string>
-    <string name="memory_management_settings_title_subhead">Memory management</string>
-    <string name="memory_management_settings_summary_head">Memory management, Compcache, KSM</string>
     <string name="performance_settings_title_head">Performance</string>
     <string name="performance_settings_title_subhead">Performance settings</string>
     <string name="performance_settings_summary_head">Performance tweaks, JIT, VM heap size</string>
@@ -68,16 +64,10 @@
 
     <!-- User interface -->
     <string name="ui_title">User interface</string>
-    <string name="ui_powertitle">Global actions</string>
     <string name="title_stats_widget">Interface tweaks</string>
 
     <string name="pref_electron_beam_animation_on">Screen-on animation</string>
     <string name="pref_electron_beam_animation_off">Screen-off animation</string>
-
-    <string name="pref_electron_beam_animation_on_delay">Screen-on animation Delay</string>
-    <string name="pref_electron_beam_animation_on_delay_summary">Choose Screen-on animation Delay Time</string>
-    <string name="pref_use_bravia_title">Enable Bravia engine</string>
-    <string name="pref_use_bravia_summary">Improve graphic effects but no guarrantee (requires reboot)</string>
     <string name="pref_rotation_animation_title">Rotation animation</string>
     <string name="pref_rotation_animation_summary">Requires a reboot</string>
     <string name="lcd_density_title">LCD Density</string>
@@ -167,7 +157,7 @@
     <!-- User interface : Rotation -->
     <string name="rotation_category_title">Accelerometer rotation</string>
     <string name="pref_rotation_reverse_title">Reverse rotation</string>
-    <string name="pref_rotation_reverse_summary">enable/disable reverse rotation display\n Use this if device has wrong rotation\n (Requires Reboot)</string>
+    <string name="pref_rotation_reverse_summary">enable/disable reverse rotation display\n Use this if device has wrong rotation</string>
     <string name="pref_rotation_0_title">0 degrees</string>
     <string name="pref_rotation_90_title">90 degrees</string>
     <string name="pref_rotation_180_title">180 degrees</string>
@@ -182,8 +172,6 @@
     <string name="ui_status_bar_am_pm_info">24-hour clock is enabled</string>
     <string name="ui_status_bar_clock_title">Clock locations</string>
     <string name="ui_status_bar_clock_summary">Choose location clock in statusbar</string>
-    <string name="ui_status_bar_weekday_title">Day of the week style</string>
-    <string name="ui_status_bar_weekday_summary">Abbreviated day of the week before the clock</string>
     <string name="ui_status_bar_alarm_title">Show alarm icon</string>
     <string name="ui_status_bar_alarm_summary">Status bar alarm icon will be hidden, if disabled</string>
     <string name="ui_status_bar_clockcolor_title">Clock color</string>
@@ -196,8 +184,6 @@
     <string name="ui_status_bar_date_summary">Status bar date will be hidden, if disabled</string>
     <string name="ui_status_bar_intruder_title">Show Intruder Alert</string>
     <string name="ui_status_bar_intruder_summary">Use intruder alert instead notifications ticker</string>
-    <string name="status_bar_intruder_time_title">Delay Intruder Alert</string>
-    <string name="status_bar_intruder_time_summary">Choose delay time before dissappears</string>
     <string name="ui_lock_status_bar_title">Show Secure icon</string>
     <string name="ui_lock_status_bar_summary">Status bar Secure icon will show up, if checked</string>
     <string name="ui_status_bar_notif_title">Show notif icon</string>
@@ -229,12 +215,6 @@
     <string name="statusbar_statsize_summary">Change the size of Height statusbar</string>
     <string name="statusbar_navisize">Navigation Size</string>
     <string name="statusbar_navisize_summary">Change the size of Navigation buttons</string>
-    <string name="pref_navi_bar_ani_title">Navigation buttons animate</string>
-    <string name="pref_navi_bar_ani_summary">Change time for animate</string>
-    <string name="pref_navi_bar_swiperight_title">Swiping Right</string>
-    <string name="pref_navi_bar_swiperight_summary">Choose activity when swiping right navigation bar</string>
-    <string name="pref_navi_bar_swipeleft_title">Swiping Left</string>
-    <string name="pref_navi_bar_swipeleft_summary">Choose activity when swiping left navigation bar</string>
     <string name="statusbar_carrierfontsize">Carrier Font Size</string>
     <string name="statusbar_carrierfontsize_summary">Change the size of text elements on carrier</string>
     <string name="ui_status_bar_statusbar_carrier_title">Carrier label menu</string>
@@ -293,8 +273,6 @@
     <string name="ui_navi_bar_color_summary">Change the background color</string>
     <string name="ui_navi_button_color_title">Navigation button color</string>
     <string name="ui_navi_button_color_summary">Change the button color</string>
-    <string name="ui_navi_glow_color_title">Navigation glow color</string>
-    <string name="ui_navi_glow_color_summary">Change the glow color</string>
     <string name="pref_transparent_status_bar_title">Status bar background appearance</string>
     <string name="pref_transparent_status_bar_summary">Change the background image</string>
     <string name="pref_transparent_navi_bar_title">Navigation background appearance</string>
@@ -320,10 +298,6 @@
     <string name="ui_status_bar_expanded_summary">Change tiny size</string>
     <string name="ui_status_bar_settingscolor_title">Closedrag Glow color</string>
     <string name="ui_status_bar_settingscolor_summary">Change the closedrag glow color</string>
-    <string name="ui_status_bar_showram_title">Ram Expanded bar</string>
-    <string name="ui_status_bar_showram_summary">Enable/disable ram expanded statusbar</string>
-    <string name="ui_status_bar_showiconex_title">Icon Status Expanded bar</string>
-    <string name="ui_status_bar_showiconex_summary">Show/hide icon status expanded statusbar</string>
 
     <!-- User interface: Text color tweaks -->
     <string name="ui_status__date_color_title">Date color</string>
@@ -557,7 +531,6 @@
     <string name="pref_lockscreen_quick_unlock_control_title">Quick Unlock</string>
     <string name="pref_lockscreen_quick_unlock_control_summary">Unlock automatically when the correct PIN/password is entered</string>
     <string name="lockscreen_style_options_title">Style-specific Options</string>
-    <string name="incall_style_options_title">Incall Style-specific Options</string>
     <string name="pref_lockscreen_custom_app_toggle_title">Custom app starter</string>
     <string name="pref_lockscreen_custom_app_toggle_tab_summary">Shows a second set of sliders to launch a custom app</string>
     <string name="pref_lockscreen_custom_app_toggle_rotary_summary">Shows a custom app dimple to launch a custom app</string>
@@ -594,12 +567,8 @@
     <string name="lockscreen_style_entry_lense">Lense</string>
     <string name="lockscreen_style_entry_ring">Ring</string> 
     <string name="lockscreen_style_entry_honeycomb">Honeycomb (Beta)</string>
-    <string name="lockscreen_style_entry_circular">Circular (Beta)</string>
+    <string name="lockscreen_style_entry_circular">Circular (Alpha)</string>
     <string name="lockscreen_style_entry_sense">Sense (Beta)</string>
-    <string name="lockscreen_style_entry_icsring">Ics Ring</string>
-    <string name="lockscreen_style_entry_jbring">Jb Ring</string>
-    <string name="lockscreen_style_entry_jbglowring">Jb GlowPad</string>
-    <string name="lockscreen_style_entry_bebering">Bebek Ring (Alpha)</string>
     <string name="pref_rotary_style_title">Rotary style</string>
     <string name="pref_rotary_style_summary">Choose the style of the rotary wheel</string>
     <string name="rotary_style_entry_normal">Normal style</string>
@@ -760,60 +729,16 @@
     <string name="haptic_revert_toast">Restoring last-used values</string>
     <string name="haptic_default_toast">Loading hard-coded defaults</string>
 
-    <!-- Memory management Settings -->
-    <string name="memory_management_title">Memory management</string>
-    <string name="memory_management_summary">Customize the usage of memory to alter system performance</string>
-
-    <!-- Memory management Settings : Compcache -->
-    <string name="pref_compcache_title">Compcache RAM Usage</string>
-    <string name="pref_compcache_summary">Compress memory for increased virtual capacity (requires reboot)</string>
-
-    <!-- Memory management Settings : Purgeable Assets -->
-    <string name="pref_purgeable_assets_title">Allow purging of assets</string>
-    <string name="pref_purgeable_assets_summary">System can free more RAM when needed if asset bitmap memory can be reclaimed (requires reboot)</string>
-
-    <!-- Memory management Settings : Lock home memory -->
-    <string name="pref_lock_home_title">Lock home in memory</string>
-    <string name="pref_lock_home_summary">Attempt to keep the current home app in memory at all times</string>
-
-    <!-- Memory management Settings : Lock mms app in memory -->
-    <string name="pref_lock_mms_title">Lock messaging app in memory</string>
-    <string name="pref_lock_mms_summary">Avoid lost messages on low memory situations</string>
-
-    <!-- Memory management Settings : GMAPS hack -->
-    <string name="pref_gmaps_hack_title">GMAPS hack</string>
-    <string name="pref_gmaps_hack_summary">Make NetworkLocationService killable. Frees some RAM, but Latitude isn\'t reporting location any more (requires restart of Maps)</string>
-
-    <!-- Memory management Settings : KSM -->
-    <string name="pref_ksm_title">Kernel samepage merging</string>
-    <string name="pref_ksm_summary">KSM reduces physical memory requirements and improves performance</string>
-    <string name="pref_ksm_sleep_title">KSM Sleep time</string>
-    <string name="pref_ksm_sleep_summary">KSM Sleep time option (improves performance)</string>
-    <string name="pref_ksm_scan_title">KSM Page scan</string>
-    <string name="pref_ksm_scan_summary">KSM Page scan option (improves performance)</string>
-
-    <!-- Memory management Settings : Low Mem Killer -->
-    <string name="pref_lowmemkill_title">Low Mem Killer</string>
-    <string name="pref_lowmemkill_summary">Option for Low Mem Killer</string>
-
-    <!-- Memory management : Scrolling Cache -->
-    <string name="pref_scrollingcache_title">Scrolling cache</string>
-    <string name="pref_scrollingcache_summary">Scrolling cache may improve scrolling performance at the cost of memory</string>
-    <string name="pref_scrollingcache_force_enable">Force enable</string>
-    <string name="pref_scrollingcache_default_enable">Default enable</string>
-    <string name="pref_scrollingcache_default_disable">Default disable</string>
-    <string name="pref_scrollingcache_force_disable">Force disable</string>
-
-    <!-- Memory management : VM Heap Size -->
-    <string name="pref_heapsize_title">VM heap size</string>
-    <string name="pref_heapsize_summary">Maximum amount of memory per VM heap (requires reboot)</string>
-
     <!-- Performance Settings -->
     <string name="performance_settings_title">Performance settings</string>
     <string name="powersaver_settings_title">Power saver settings</string>
 
     <!-- Performance Settings : BatteryCalibrate -->
     <string name="batterycalibrate">Calibrate Battery</string>
+
+    <!-- Performance Settings : Compcache -->
+    <string name="pref_compcache_title">Compcache RAM Usage</string>
+    <string name="pref_compcache_summary">Compress memory for increased virtual capacity (requires reboot)</string>
 
     <!-- Performance Settings : JIT Mode -->
     <string name="pref_jit_mode_title">Use JIT</string>
@@ -826,9 +751,37 @@
     <string name="dithering_blur_effect">Fix color banding and blur effect</string>
     <string name="pref_use_dithering_summary">Dithering improves image quality on some displays at the cost of performance (requires reboot)</string>
 
+    <!-- Display Settings : Bravia -->
+    <string name="pref_use_bravia_title">Enable Bravia engine</string>
+    <string name="pref_use_bravia_summary">Improve graphic effects but no guarrantee (requires reboot)</string>
+
+    <!-- Performance Settings : KSM -->
+    <string name="pref_ksm_title">Kernel samepage merging</string>
+    <string name="pref_ksm_summary">KSM reduces physical memory requirements and improves performance</string>
+    <string name="pref_ksm_sleep_title">KSM Sleep time</string>
+    <string name="pref_ksm_sleep_summary">KSM Sleep time option (improves performance)</string>
+    <string name="pref_ksm_scan_title">KSM Page scan</string>
+    <string name="pref_ksm_scan_summary">KSM Page scan option (improves performance)</string>
+
     <!-- Performance Settings : 16bpp Alpha -->
     <string name="pref_use_16bpp_alpha_title">Use 16bit transparency</string>
     <string name="pref_use_16bpp_alpha_summary">Using 16bit transparency can improve scrolling performance, but may cause visual artifacts (requires reboot)</string>
+
+    <!-- Performance Settings : Scrolling Cache -->
+    <string name="pref_scrollingcache_title">Scrolling cache</string>
+    <string name="pref_scrollingcache_summary">Scrolling cache may improve scrolling performance at the cost of memory</string>
+    <string name="pref_scrollingcache_force_enable">Force enable</string>
+    <string name="pref_scrollingcache_default_enable">Default enable</string>
+    <string name="pref_scrollingcache_default_disable">Default disable</string>
+    <string name="pref_scrollingcache_force_disable">Force disable</string>
+
+    <!-- Performance Settings : Purgeable Assets -->
+    <string name="pref_purgeable_assets_title">Allow purging of assets</string>
+    <string name="pref_purgeable_assets_summary">System can free more RAM when needed if asset bitmap memory can be reclaimed (requires reboot)</string>
+
+    <!-- Performance Settings : VM Heap Size -->
+    <string name="pref_heapsize_title">VM heap size</string>
+    <string name="pref_heapsize_summary">Maximum amount of memory per VM heap (requires reboot)</string>
 
     <string name="pref_vol_bootsound_title">Bootsound Volume</string>
     <string name="pref_vol_bootsound_summary">Maximum volume for Bootsound (requires reboot)</string>
@@ -844,6 +797,18 @@
     <string name="pref_enable_bootsound_title">Enable boot sound</string>
     <string name="pref_enable_bootsound_play_summary">play the boot sound</string>
     <string name="pref_enable_bootsound_not_summary">Don\'t play the boot sound</string>
+
+    <!-- Performance : Lock home memory -->
+    <string name="pref_lock_home_title">Lock home in memory</string>
+    <string name="pref_lock_home_summary">Attempt to keep the current home app in memory at all times</string>
+
+    <!-- Performance : Lock mms app in memory -->
+    <string name="pref_lock_mms_title">Lock messaging app in memory</string>
+    <string name="pref_lock_mms_summary">Avoid lost messages on low memory situations</string>
+
+    <!-- Performance : GMAPS hack -->
+    <string name="pref_gmaps_hack_title">GMAPS hack</string>
+    <string name="pref_gmaps_hack_summary">Make NetworkLocationService killable. Frees some RAM, but Latitude isn\'t reporting location any more (requires restart of Maps)</string>
 
     <!-- Performance Settings : SD Read Ahead Cache Size -->
     <string name="pref_sd_readahead_title">SD Read Ahead Size</string>
@@ -950,13 +915,10 @@
 
     <!-- Expanded View Power Widget -->
     <string name="title_widget_buttons">Expanded View Widget</string>
-    <string name="title_tileview">Expanded TileView</string>
     <string name="title_expanded_widget">Notification power widget</string>
     <string name="title_expanded_widget_bgr">Background power widget</string>
     <string name="summary_expanded_widget">choose style expanded views power widget</string>
     <string name="summary_expanded_widget_bgr">choose background expanded views power widget</string>
-    <string name="title_pref_tracker">Tracker image</string>
-    <string name="summary_pref_tracker">choose image tracker views</string>
     <string name="title_bottom_expanded_widget">Move to bottom</string>
     <string name="bottom_expanded_widget_summaryOn">Showing power widget on bottom</string>
     <string name="bottom_expanded_widget_summaryOff">Showing power widget on top</string>
@@ -989,18 +951,11 @@
     <string name="summary_expanded_hide_scrollbar">Hide scrollbar when more than the maximum number of widget buttons are present.</string>
     <string name="expanded_color_mask">Indicator color</string>
     <string name="expanded_bgr_color_mask">Background power widget color</string>
-    <string name="title_pref_tracker_color">Choose color</string>
-    <string name="pref_tracker_color_summary">Image Tracker color</string>
     <string name="title_widget_picker">Widget buttons</string>
     <string name="summary_widget_picker">Pick your widget buttons</string>
     <string name="title_widget_order">Widget button order</string>
     <string name="summary_widget_order">Order your widget buttons</string>
-    <string name="title_tileview_picker">Widget TileViews</string>
-    <string name="summary_tileview_picker">Pick your widget TileViews</string>
-    <string name="title_tileview_order">Widget TileView order</string>
-    <string name="summary_tileview_order">Order your widget TileViews</string>
     <string name="title_buttons">Buttons</string>
-    <string name="title_tiles">Tiles</string>
     <string name="title_toggle_wifi">Toggle Wifi</string>
     <string name="title_toggle_bluetooth">Toggle Bluetooth</string>
     <string name="title_toggle_gps">Toggle GPS</string>
@@ -1021,22 +976,10 @@
     <string name="title_toggle_media_play_pause">Media: Toggle Play/Pause</string>
     <string name="title_toggle_media_previous">Media: Skip to Previous</string>
     <string name="title_toggle_media_next">Media: Skip to Next</string>
-    <string name="title_toggle_battery">Toggle Battery</string>
-    <string name="title_toggle_setting">Toggle Setting</string>
-    <string name="title_toggle_time">Toggle Clock and Date</string>
     <string name="title_toggle_wimax">Toggle WiMAX</string>
-    <string name="title_toggle_user">Toggle User</string>
-    <string name="title_toggle_cpu">Toggle CPU info</string>
-    <string name="title_toggle_weather">Toggle Weather</string>
-    <string name="title_toggle_notif">Toggle Notif</string>
-    <string name="title_toggle_profile">Toggle Profile</string>
-    <string name="title_toggle_power">Toggle Power menu</string>
-    <string name="title_toggle_alarm">Toggle Alarm</string>
     <string name="title_button_modes">Button modes</string>
-    <string name="title_tileview_modes">TileView modes</string>
     <string name="pref_brightness_mode_title">Brightness modes</string>
     <string name="pref_brightness_mode_summary">Choose how the brightness button changes modes</string>
-    <string name="cm_brightness_mode_auto">Auto</string>
     <string name="cm_brightness_mode_dim">Dim</string>
     <string name="cm_brightness_mode_100">100%</string>
     <string name="cm_brightness_mode_75">75%</string>
@@ -1058,10 +1001,6 @@
     <string name="pref_flash_mode_summary">Choose High / Death Ray</string>
     <string name="pref_mobiledatanetwork_mode_title">Mobiledata auto 2G/3G</string>
     <string name="pref_mobiledatanetwork_mode_summary">Mobiledata button toggles 2G/3G mode</string>
-    <string name="user_widgets_title">Set MyNumbers</string>
-    <string name="user_widgets_summary">Choose your mobile numbers, and this will showup in User TileView</string>
-    <string name="ui_enable_flip_title">Flip Animation</string>
-    <string name="ui_enable_flip_summary">Enable/disable flip animation tileview</string>
 
     <!-- Backlight -->
     <string name="backlight_title">Automatic backlight</string>
@@ -1328,6 +1267,8 @@
     <string name="cpu_max_freq_summary">Maximum CPU frequency\nCurrently: %s</string>
     <string name="screenoff_cpu_max_freq_title">Max screen off CPU freq</string>
     <string name="screenoff_cpu_max_freq_summary">Maximum screen off CPU frequency\nCurrently set to: %s</string>
+    <string name="pref_lowmemkill_title">Low Mem Killer</string>
+    <string name="pref_lowmemkill_summary">Option for Low Mem Killer</string>
     <string name="pref_iosched_title">I/O scheduler</string>
     <string name="pref_iosched_summary">Change I/O scheduler</string>
     <string name="io_sched_summary">%S</string>
@@ -1419,153 +1360,4 @@
     <string name="compatibility_mode_summary_on">Run older apps in Compatibility mode. (requires reboot)</string>
     <!-- Sound & display settings screen, compatibility mode option summary text when check box is clear -->
     <string name="compatibility_mode_summary_off">Don\'t run older apps in Compatibility mode. (requires reboot)</string>
-
-    <string name="pref_render_colors_title">Color calibration</string>
-    <string name="pref_render_colors_summary">Fine-tune the calibration colors</string>
-    <string name="render_colors_reset">Reset</string>
-    <string name="render_color_red_title">Red</string>
-    <string name="render_color_green_title">Green</string>
-    <string name="render_color_blue_title">Blue</string>
-
-    <!-- Lock screen see through -->
-    <string name="lockscreen_see_through_title">See through</string>
-    <string name="lockscreen_see_through_summary">Allows to see the activity behind the lock screen.\n Custom image will disable this preference.</string>
-
-    <!-- Lock Screen Weather -->
-    <string name="lockscreen_weather_title">Weather</string>
-    <string name="lockscreen_weather_summary">Display weather information on the lock screen</string>
-    <string name="lockscreen_weather_enabled">Enabled</string>
-    <string name="weather_enable">Display weather</string>
-    <string name="weather_source">Show weather information on the lock screen\n Yahoo! Weather</string>
-    <string name="weather_use_custom_location">Use custom location</string>
-    <string name="weather_geolocated">Geolocated using network</string>
-    <string name="weather_custom_location_dialog_title">Enter location</string>
-    <string name="weather_custom_location_dialog_message">Caution: Entering an invalid location will stop updates.</string>
-    <string name="weather_custom_location_hint">City, State/Country</string>
-    <string name="weather_custom_location_title">Location</string>
-    <string name="weather_show_location_title">Show location</string>
-    <string name="weather_show_timestamp_title">Show timestamp</string>
-    <string name="weather_refresh_interval">Update interval</string>
-    <string name="weather_update">Update</string>
-    <string name="weather_use_metric">Use metric</string>
-    <string name="weather_refreshing">Updating weather</string>
-    <string name="weather_retrieve_location_dialog_title">Cannot retrieve location!</string>
-    <string name="weather_retrieve_location_dialog_message">Network geolocation is disabled.\n\nSet a custom location or enable network location</string>
-    <string name="weather_retrieve_location_dialog_enable_button">Enable</string>
-    <string name="weather_invert_lowhigh">Invert low/high temperatures</string>
-    <string name="weather_progress_title">Verifying location</string>
-
-    <string name="weather_sync_dialog_title">Warning!</string>
-    <string name="weather_sync_dialog_message">Lockscreen Weather now disable.\n\nSet interval sync if you want enable Lockscreen Weather.</string>
-
-    <!-- Lock screen Weather - Update frequency -->
-    <string name="weather_refresh_manual">Manual</string>
-    <string name="weather_refresh_30min">30 minutes</string>
-    <string name="weather_refresh_60min">60 minutes</string>
-    <string name="weather_refresh_2hrs">2 hours</string>
-    <string name="weather_refresh_4hrs">4 hours</string>
-    <string name="weather_refresh_6hrs">6 hours</string>
-    <string name="weather_refresh_8hrs">8 hours</string>
-    <string name="unknown">Unknown</string>
-    <string name="cancel">Cancel</string>
-    <string name="widgets_reset_title">Reset</string>
-    <string name="widgets_reset_message">Restore the default displayed widgets or tiles?</string>
-    <string name="powerwidgets_reset_title">Reset Widgets</string>
-    <string name="powerwidgets_reset_summary">Restore displayed widgets or tiles to default</string>
-    <string name="userwidgets_message">Please click User tileview to reload your picture.\nIf not update automatically.</string>
-
-    <!-- Pie controls -->
-    <string name="pie_controls_title">Pie controls</string>
-    <string name="pie_color_change_title">Pie color controls</string>
-    <string name="pie_controls_summary">Allows navigation and status report on expanded desktop mode</string>
-    <string name="pie_gravity_title">Pie gravity</string>
-    <string name="pie_gravity_summary">Select the location where the pie will be placed at</string>
-    <string name="pie_gravity_top">Top</string>
-    <string name="pie_gravity_bottom">Bottom</string>
-    <string name="pie_gravity_right">Right</string>
-    <string name="pie_gravity_left">Left</string>
-    <string name="pie_mode_title">Pie style</string>
-    <string name="pie_mode_summary">Manage how animations and status additions will be handled</string>
-    <string name="pie_mode_bare">Bare</string>
-    <string name="pie_mode_quick">Quick</string>
-    <string name="pie_mode_default">Normal (Default)</string>
-    <string name="pie_mode_slow">Slow</string>
-    <string name="pie_size_title">Pie size</string>
-    <string name="pie_size_summary">Define pie controls size</string>
-    <string name="pie_size_small">Small</string>
-    <string name="pie_size_medium">Medium</string>
-    <string name="pie_size_default">@string/pie_mode_default</string>
-    <string name="pie_size_large">Large</string>
-    <string name="pie_size_gigantic">Gigantic</string>
-    <string name="pie_enable_color_title">Enable color overlay</string>
-    <string name="pie_enable_color_summary">Enable/disable pie color overlay</string>
-    <string name="pie_enable_control_title">Enable Pie control</string>
-    <string name="pie_enable_control_summary">Enable/disable pie control</string>
-    <string name="pie_button_color_title">Change button color</string>
-    <string name="pie_button_color_summary">Change button color overlay</string>
-    <string name="pie_background_button_color_title">Change background color</string>
-    <string name="pie_background_button_color_summary">Change background color overlay</string>
-    <string name="pie_choice_button_color_title">Change button choice color</string>
-    <string name="pie_choice_button_color_summary">Change button choice color overlay</string>
-    <string name="pie_battery_color_title">Change battery color</string>
-    <string name="pie_battery_color_summary">Change battery color overlay</string>
-    <string name="pie_chevron_color_title">Change chevron color</string>
-    <string name="pie_chevron_color_summary">Change chevron color overlay</string>
-    <string name="pie_clock_color_title">Change clock color</string>
-    <string name="pie_clock_color_summary">Change clock color overlay</string>
-    <string name="pie_outline_color_title">Change outline color</string>
-    <string name="pie_outline_color_summary">Change outline color overlay</string>
-    <string name="piecontrol_notice_summary">NavigationBar is enable.\n\nDisable navigationbar if you want using PIE.</string>
-    <string name="pie_gap_title">Item gap</string>
-    <string name="pie_gap_summary">Adjust the gap in between pie elements</string>
-    <string name="pie_gap_closed">Closed</string>
-    <string name="pie_gap_small">Small (default)</string>
-    <string name="pie_gap_big">Big</string>
-    <string name="pie_gap_huge">Huge</string>
-    <string name="pie_trigger_title">Trigger area</string>
-    <string name="pie_trigger_summary">Determine the size of the region that registers swipes</string>
-    <string name="pie_trigger_small">@string/pie_gap_small</string>
-    <string name="pie_trigger_big">@string/pie_gap_big</string>
-    <string name="pie_trigger_huge">@string/pie_gap_huge</string>
-    <string name="pie_trigger_disable">Disable</string>
-    <string name="pref_pie_buttons_home_title">Pie home</string>
-    <string name="pref_pie_buttons_home1_title">Pie home level 1</string>
-    <string name="pref_pie_buttons_home2_title">Pie home level 2</string>
-    <string name="pref_pie_buttons_home3_title">Pie home level 3</string>
-    <string name="pref_pie_buttons_home4_title">Pie home level 4</string>
-    <string name="pref_pie_buttons_home_summary">Choose activity for this button</string>
-    <string name="pref_pie_buttons_home_input_title">Choose activity</string>
-    <string name="pref_pie_buttons_home_level_toggle_title">Enable Pie item levels</string>
-    <string name="pref_pie_buttons_home_level_toggle_summary">Enable/disable Pie item levels</string>
-    <string name="pref_pie_buttons_home_app_toggle_title">Enable Pie custom app</string>
-    <string name="pref_pie_buttons_home_app_toggle_summary">Enable/disable pie custom app</string>
-    <string name="pref_pie_buttons_search_title">Pie search</string>
-    <string name="pref_pie_buttons_search1_title">Pie search level 1</string>
-    <string name="pref_pie_buttons_search2_title">Pie search level 2</string>
-    <string name="pref_pie_buttons_search3_title">Pie search level 3</string>
-    <string name="pref_pie_buttons_search4_title">Pie search level 4</string>
-    <string name="pref_pie_buttons_recent_title">Pie recent</string>
-    <string name="pref_pie_buttons_recent1_title">Pie recent level 1</string>
-    <string name="pref_pie_buttons_recent2_title">Pie recent level 2</string>
-    <string name="pref_pie_buttons_recent3_title">Pie recent level 3</string>
-    <string name="pref_pie_buttons_recent4_title">Pie recent level 4</string>
-    <string name="pref_pie_buttons_menu_title">Pie menu</string>
-    <string name="pref_pie_buttons_menu1_title">Pie menu level 1</string>
-    <string name="pref_pie_buttons_menu2_title">Pie menu level 2</string>
-    <string name="pref_pie_buttons_menu3_title">Pie menu level 3</string>
-    <string name="pref_pie_buttons_menu4_title">Pie menu level 4</string>
-    <string name="pref_pie_buttons_back_title">Pie back</string>
-    <string name="pref_pie_buttons_back1_title">Pie back level 1</string>
-    <string name="pref_pie_buttons_back2_title">Pie back level 2</string>
-    <string name="pref_pie_buttons_back3_title">Pie back level 3</string>
-    <string name="pref_pie_buttons_back4_title">Pie back level 4</string>
-    <string name="pie_recent_controls_title">Pie recent control</string>
-    <string name="pie_menu_controls_title">Pie menu control</string>
-    <string name="pie_search_controls_title">Pie search control</string>
-    <string name="pie_back_controls_title">Pie back control</string>
-    <string name="pie_home_controls_title">Pie home control</string>
-    <string name="pie_item_controls_title">Pie item control</string>
-
-    <string name="input_pie_key_title">Pie item control</string>
-    <string name="input_pie_key_summary">Choose pie item control activity</string>
 </resources>

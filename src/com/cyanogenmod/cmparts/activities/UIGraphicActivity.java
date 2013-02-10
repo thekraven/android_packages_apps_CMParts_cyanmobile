@@ -114,7 +114,7 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
         mBackgroundAppImageTmp = new File(getApplicationContext().getFilesDir()+"/aps_background.tmp");
 
         int appBackgroundColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.BACKGROUND_APP_COLOR, defValuesColor());
+                Settings.System.BACKGROUND_APP_COLOR, 0xFF38FF00);
         mAppBackgroundColor.setSummary(Integer.toHexString(appBackgroundColor));
         mAppBackgroundColor.setEnabled(transparentAppBackgroundPref == 1);
 
@@ -238,8 +238,10 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
             if (mOverscrollColor.findIndexOfValue(val)==0){
                 Settings.System.putInt(getContentResolver(), Settings.System.OVERSCROLL_COLOR, 0);
             }else{
+                int overscrollColor = Settings.System.getInt(getContentResolver(),
+                        Settings.System.OVERSCROLL_COLOR, 0xFF38FF00);
                 ColorPickerDialog cp = new ColorPickerDialog(this,mPackageColorListener,
-                        getPackageColorColor());
+                        overscrollColor);
                 cp.show();
             }
             return true;
@@ -281,7 +283,7 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
             return Settings.System.getInt(getContentResolver(), Settings.System.TEXT_FULLOFCOLOR);
         }
         catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -1;
         }
     }
 
@@ -304,26 +306,13 @@ public class UIGraphicActivity extends PreferenceActivity implements OnPreferenc
         }
     };
 
-    private int getPackageColorColor() {
-        try {
-            return Settings.System.getInt(getContentResolver(),
-                     Settings.System.OVERSCROLL_COLOR);
-        } catch (SettingNotFoundException e) {
-            return defValuesColor();
-        }
-    }
-
     private int getBgAppColor() {
         try {
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.BACKGROUND_APP_COLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
-    }
-
-    private int defValuesColor() {
-        return getResources().getInteger(com.android.internal.R.color.color_default_cyanmobile);
     }
 
     ColorPickerDialog.OnColorChangedListener mBgAppColorListener =

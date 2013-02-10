@@ -29,9 +29,6 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import java.io.IOException;
 
-import com.cyanogenmod.cmparts.utils.TileViewUtil;
-import com.cyanogenmod.cmparts.utils.PowerWidgetUtil;
-
 import com.cyanogenmod.cmparts.R;
 
 public class UIPowerWidgetActivity extends PreferenceActivity
@@ -68,10 +65,6 @@ public class UIPowerWidgetActivity extends PreferenceActivity
     private static final String POWER_WIDGET_GRID_THREE = "pref_widget_grid_three";
 
     private static final String POWER_WIDGET_GRID_FOUR = "pref_widget_grid_four";
-
-    private static final String RESETWIDGETS_PREF = "reset_widgets_pref";
-
-    private Preference mResetWidgets;
 
     private ListPreference mPowerWidget;
 
@@ -123,7 +116,7 @@ public class UIPowerWidgetActivity extends PreferenceActivity
         mPowerWidget = (ListPreference) prefSet.findPreference(UI_EXP_WIDGET);
         mPowerWidget.setOnPreferenceChangeListener(this);
         mPowerWidget.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_VIEW_WIDGET, 5)));
+                Settings.System.EXPANDED_VIEW_WIDGET, 1)));
 
         mPowerWidgetBgr = (ListPreference) prefSet.findPreference(UI_EXP_WIDGET_BGR);
         mPowerWidgetBgr.setOnPreferenceChangeListener(this);
@@ -135,16 +128,6 @@ public class UIPowerWidgetActivity extends PreferenceActivity
         mPowerWidgetGridTwo = (CheckBoxPreference) prefSet.findPreference(POWER_WIDGET_GRID_TWO);
         mPowerWidgetGridThree = (CheckBoxPreference) prefSet.findPreference(POWER_WIDGET_GRID_THREE);
         mPowerWidgetGridFour = (CheckBoxPreference) prefSet.findPreference(POWER_WIDGET_GRID_FOUR);
-
-        mPowerWidgetGridOne.setEnabled(Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_VIEW_WIDGET, 5) != 5);
-        mPowerWidgetGridTwo.setEnabled(Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_VIEW_WIDGET, 5) != 5);
-        mPowerWidgetGridThree.setEnabled(Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_VIEW_WIDGET, 5) != 5);
-        mPowerWidgetGridFour.setEnabled(Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_VIEW_WIDGET, 5) != 5);
-
         mPowerWidgetHideOnChange = (CheckBoxPreference) prefSet
                 .findPreference(UI_EXP_WIDGET_HIDE_ONCHANGE);
         mPowerWidgetHideScrollBar = (CheckBoxPreference) prefSet
@@ -161,7 +144,6 @@ public class UIPowerWidgetActivity extends PreferenceActivity
                     Settings.System.TRANSPARENT_PWR_CRR, 0) == 1));
         mPowerPicker = (PreferenceScreen) prefSet.findPreference(UI_EXP_WIDGET_PICKER);
         mPowerOrder = (PreferenceScreen) prefSet.findPreference(UI_EXP_WIDGET_ORDER);
-        mResetWidgets = (Preference) prefSet.findPreference(RESETWIDGETS_PREF);
 
         mMusicWidget.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.MUSIC_WIDGET_TOGGLE, 0) == 1));
@@ -220,41 +202,12 @@ public class UIPowerWidgetActivity extends PreferenceActivity
                Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_CARRIER, 6);
                Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_ONE, 1);
                Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_TWO, 1);
-               mPowerWidgetGridOne.setChecked(true);
-               mPowerWidgetGridTwo.setChecked(true);
-               mPowerWidgetGridOne.setEnabled(true);
-               mPowerWidgetGridTwo.setEnabled(true);
-               mPowerWidgetGridThree.setEnabled(true);
-               mPowerWidgetGridFour.setEnabled(true);
                restartStatusBar();
-            } else if (intsValue == 5) {
-               Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_CARRIER, 0);
+            } else if (intsValues == 4) {
                Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_ONE, 0);
                Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_TWO, 0);
                Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_THREE, 0);
                Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_FOUR, 0);
-               mPowerWidgetGridOne.setChecked(false);
-               mPowerWidgetGridTwo.setChecked(false);
-               mPowerWidgetGridThree.setChecked(false);
-               mPowerWidgetGridFour.setChecked(false);
-               mPowerWidgetGridOne.setEnabled(false);
-               mPowerWidgetGridTwo.setEnabled(false);
-               mPowerWidgetGridThree.setEnabled(false);
-               mPowerWidgetGridFour.setEnabled(false);
-               restartStatusBar();
-            } else if ((intsValues == 4) || (intsValues == 5)) {
-               Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_ONE, 0);
-               Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_TWO, 0);
-               Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_THREE, 0);
-               Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET_GRID_FOUR, 0);
-               mPowerWidgetGridOne.setChecked(false);
-               mPowerWidgetGridTwo.setChecked(false);
-               mPowerWidgetGridThree.setChecked(false);
-               mPowerWidgetGridFour.setChecked(false);
-               mPowerWidgetGridOne.setEnabled(true);
-               mPowerWidgetGridTwo.setEnabled(true);
-               mPowerWidgetGridThree.setEnabled(true);
-               mPowerWidgetGridFour.setEnabled(true);
                restartStatusBar();
             }
             return true;
@@ -324,9 +277,6 @@ public class UIPowerWidgetActivity extends PreferenceActivity
                     readWidgetBgrColor());
             cp.show();
         }
-        if (preference == mResetWidgets) {
-            resetWidgets();
-        }
         return true;
     }
 
@@ -338,30 +288,12 @@ public class UIPowerWidgetActivity extends PreferenceActivity
         }
     }
 
-    private void resetWidgets() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(R.string.widgets_reset_title);
-        alert.setMessage(R.string.widgets_reset_message);
-        alert.setPositiveButton(R.string.common_dialog_ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                int intsValues = Settings.System.getInt(getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 5);
-                if (intsValues == 5) {
-                    TileViewUtil.resetCurrentTiles(getApplicationContext());
-                } else {
-                    PowerWidgetUtil.resetCurrentButtons(getApplicationContext());
-                }
-            }
-        });
-        alert.setNegativeButton(R.string.common_dialog_cancel, null);
-        alert.create().show();
-    }
-
     private int readWidgetColor() {
         try {
             return Settings.System.getInt(getContentResolver(),
                     Settings.System.EXPANDED_VIEW_WIDGET_COLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 
@@ -380,12 +312,8 @@ public class UIPowerWidgetActivity extends PreferenceActivity
             return Settings.System.getInt(getContentResolver(),
                     Settings.System.PWR_CRR_COLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
-    }
-
-    private int defValuesColor() {
-        return getResources().getInteger(com.android.internal.R.color.color_default_cyanmobile);
     }
 
     ColorPickerDialog.OnColorChangedListener mWidgetBgrColorListener = new ColorPickerDialog.OnColorChangedListener() {

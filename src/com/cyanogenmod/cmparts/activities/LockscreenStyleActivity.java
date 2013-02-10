@@ -90,8 +90,6 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
 
     private static final String PREF_STATUS_BAR_LOCKSCREENCOLOR = "pref_status_bar_lockscreencolor";
 
-    private static final String KEY_SEE_TRHOUGH_PREF = "lockscreen_see_through";
-
     private PreferenceCategory mCategoryStyleGeneral;
 
     private PreferenceCategory mCategoryStyleLockscreen;
@@ -138,7 +136,6 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
     private RinglockStyle mRinglockStyle;
     private ShortcutPickHelper mPicker;
     private Preference mSquadzone;
-    private CheckBoxPreference mSeeThrough;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -156,7 +153,7 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
         mLockscreenStylePref = (ListPreference) prefSet.findPreference(LOCKSCREEN_STYLE_PREF);
         mLockscreenStyle = LockscreenStyle.getStyleById(
                 Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCKSCREEN_STYLE_PREF, LockscreenStyle.getIdByStyle(LockscreenStyle.JbGlowRing)));
+                Settings.System.LOCKSCREEN_STYLE_PREF, LockscreenStyle.getIdByStyle(LockscreenStyle.Ring)));
         mLockscreenStylePref.setValue(String.valueOf(LockscreenStyle.getIdByStyle(mLockscreenStyle)));
         mLockscreenStylePref.setOnPreferenceChangeListener(this);
 
@@ -164,7 +161,7 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
         mInCallStylePref = (ListPreference) prefSet.findPreference(IN_CALL_STYLE_PREF);
         mInCallStyle = InCallStyle.getStyleById(
                 Settings.System.getInt(getContentResolver(),
-                Settings.System.IN_CALL_STYLE_PREF, InCallStyle.getIdByStyle(InCallStyle.JbGlowRing)));
+                Settings.System.IN_CALL_STYLE_PREF, InCallStyle.getIdByStyle(InCallStyle.Ring)));
         mInCallStylePref.setValue(String.valueOf(InCallStyle.getIdByStyle(mInCallStyle)));
         mInCallStylePref.setOnPreferenceChangeListener(this);
 
@@ -197,15 +194,8 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
         mStatusBarLockscreenColor = (Preference) prefSet.findPreference(PREF_STATUS_BAR_LOCKSCREENCOLOR);
         mStatusBarLockscreenColor.setOnPreferenceChangeListener(this);
         int lockscreenColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_LOCKSCREENCOLOR, defValuesColor());
+                Settings.System.STATUS_BAR_LOCKSCREENCOLOR, 0xFF38FF00);
         mStatusBarLockscreenColor.setSummary(Integer.toHexString(lockscreenColor));
-
-        mSeeThrough = (CheckBoxPreference) findPreference(KEY_SEE_TRHOUGH_PREF);
-        mSeeThrough.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1));
-        String valback = Settings.System.getString(getContentResolver(),
-                Settings.System.LOCKSCREEN_BACKGROUND);
-        mSeeThrough.setEnabled((valback == null));
 
         /* Rotary related options */
         mRotaryUnlockDownToggle = (CheckBoxPreference) prefSet
@@ -295,14 +285,12 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
                         Settings.System.LOCKSCREEN_BACKGROUND,"");
                 mCustomBackground.setValueIndex(1);
                 updateCustomBackgroundSummary();
-                mSeeThrough.setEnabled(false);
             } else {
                 if (wallpaperTemporary.exists()) {
                     wallpaperTemporary.delete();
                 }
                 Toast.makeText(this, getResources().getString(R.string.
                         pref_lockscreen_background_result_not_successful), Toast.LENGTH_LONG).show();
-                mSeeThrough.setEnabled(true);
             }
         }
         mPicker.onActivityResult(requestCode, resultCode, data);
@@ -335,11 +323,6 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
         } else if (preference == mStatusBarLockscreenColor) {
             LSColorPickerDialog ls = new LSColorPickerDialog(this, mLockscreenColorListener, getLockscreenColor());
             ls.show();
-            return true;
-        } else if (preference == mSeeThrough) {
-            value = mSeeThrough.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
-                    value ? 1 : 0);
             return true;
         } else if (preference == mRotaryHideArrowsToggle) {
             value = mRotaryHideArrowsToggle.isChecked();
@@ -434,10 +417,6 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
         return false;
     }
 
-    private int defValuesColor() {
-        return getResources().getInteger(com.android.internal.R.color.color_default_cyanmobile);
-    }
-
     ColorPickerDialog.OnColorChangedListener mPackageColorListener =
         new ColorPickerDialog.OnColorChangedListener() {
         public void colorChanged(int color) {
@@ -525,7 +504,6 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
                 Settings.System.putString(getContentResolver(),
                         Settings.System.LOCKSCREEN_BACKGROUND,null);
                 updateCustomBackgroundSummary();
-                mSeeThrough.setEnabled(true);
                 break;
             }
             return true;
@@ -565,7 +543,7 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
         mCategoryStyleLockscreen.setTitle(getResources().getString(R.string.lockscreen_style_options_title) +
                 " (" + mLockscreenStylePref.getEntries()[mLockscreenStylePref.
                 findIndexOfValue("" + LockscreenStyle.getIdByStyle(lockscreenStyle))] + ")");
-        mCategoryStyleInCall.setTitle(getResources().getString(R.string.incall_style_options_title) +
+        mCategoryStyleInCall.setTitle(getResources().getString(R.string.lockscreen_style_options_title) +
                 " (" + mInCallStylePref.getEntries()[mInCallStylePref.
                 findIndexOfValue("" + InCallStyle.getIdByStyle(inCallStyle))] + ")");
 
@@ -641,6 +619,7 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
                 lockscreenCatPrefs.add(mCustomAppActivityPref);
                 lockscreenCatPrefsEnable.add(mCustomAppTogglePref.isChecked());
                 break;
+            //case Lense:
             default: //Includes Lense
                 prefSet.removePreference(mCategoryStyleLockscreen);
         }
@@ -720,7 +699,7 @@ public class LockscreenStyleActivity extends PreferenceActivity implements
             return Settings.System.getInt(getContentResolver(),
                      Settings.System.STATUS_BAR_LOCKSCREENCOLOR);
         } catch (SettingNotFoundException e) {
-            return defValuesColor();
+            return -16777216;
         }
     }
 

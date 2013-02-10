@@ -109,9 +109,8 @@ public class PowerWidgetUtil {
 
     public static String getCurrentButtons(Context context) {
         String buttons = Settings.System.getString(context.getContentResolver(), Settings.System.WIDGET_BUTTONS);
-        boolean addPowerWidget = ((Settings.System.getInt(context.getContentResolver(),
-                   Settings.System.EXPANDED_VIEW_WIDGET, 5) != 5) || (Settings.System.getInt(context.getContentResolver(),
-                   Settings.System.EXPANDED_VIEW_WIDGET, 5) != 0));
+        boolean addPowerWidget = Settings.System.getInt(context.getContentResolver(),
+                   Settings.System.EXPANDED_VIEW_WIDGET, 1) == 3;
         if (buttons == null) {
             buttons = BUTTONS_DEFAULT;
             if (addPowerWidget) {
@@ -144,11 +143,6 @@ public class PowerWidgetUtil {
     public static void saveCurrentButtons(Context context, String buttons) {
         Settings.System.putString(context.getContentResolver(),
                 Settings.System.WIDGET_BUTTONS, buttons);
-    }
-
-    public static void resetCurrentButtons(Context context) {
-        Settings.System.putString(context.getContentResolver(),
-                Settings.System.WIDGET_BUTTONS, BUTTONS_DEFAULT);
     }
 
     public static String mergeInNewButtonString(String oldString, String newString) {
